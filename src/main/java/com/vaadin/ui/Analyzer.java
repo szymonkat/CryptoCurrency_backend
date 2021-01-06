@@ -7,8 +7,8 @@ import com.vaadin.flow.component.details.Details;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.service.implementations.AnalyzerServiceImpl;
-import com.vaadin.service.implementations.ExchangePortalServiceImpl;
+import com.vaadin.service.interfaces.AnalyzerService;
+import com.vaadin.service.interfaces.ExchangePortalService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @PageTitle("Analyzer")
@@ -16,12 +16,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class Analyzer extends VerticalLayout {
 
     @Autowired
-    private AnalyzerServiceImpl analyzerService;
+    private AnalyzerService analyzerService;
     @Autowired
-    private ExchangePortalServiceImpl exchangePortalService;
+    private ExchangePortalService exchangePortalService;
 
-    public Analyzer(ExchangePortalServiceImpl exchangePortalService,
-                    AnalyzerServiceImpl analyzerService) {
+    public Analyzer(ExchangePortalService exchangePortalService,
+                    AnalyzerService analyzerService) {
 
         this.analyzerService = analyzerService;
         this.exchangePortalService = exchangePortalService;

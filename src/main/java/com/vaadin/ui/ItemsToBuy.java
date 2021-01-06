@@ -11,9 +11,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.service.implementations.ExchangePortalServiceImpl;
-import com.vaadin.service.implementations.ItemToBuyServiceImpl;
-import com.vaadin.service.implementations.WalletServiceImpl;
+import com.vaadin.service.interfaces.ExchangePortalService;
 import com.vaadin.service.interfaces.ItemToBuyService;
 import com.vaadin.service.interfaces.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,16 +27,16 @@ public class ItemsToBuy extends VerticalLayout {
     private ItemToBuyDelete itemToBuyDelete;
     private ItemToBuyFinalize itemToBuyFinalize;
     @Autowired
-    private ExchangePortalServiceImpl exchangePortalService;
+    private ExchangePortalService exchangePortalService;
     @Autowired
-    private ItemToBuyServiceImpl itemToBuyService;
+    private ItemToBuyService itemToBuyService;
     @Autowired
-    private WalletServiceImpl walletService;
+    private WalletService walletService;
 
     final Grid<ItemToBuy> itemToBuyGrid = new Grid<>(ItemToBuy.class);
 
-    public ItemsToBuy(ItemToBuyServiceImpl itemToBuyService, ExchangePortalServiceImpl exchangePortalService,
-                      WalletServiceImpl walletService)  {
+    public ItemsToBuy(ItemToBuyService itemToBuyService, ExchangePortalService exchangePortalService,
+                      WalletService walletService)  {
         this.itemToBuyService = itemToBuyService;
 
         addClassName("list-view");

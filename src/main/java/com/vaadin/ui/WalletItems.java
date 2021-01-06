@@ -12,8 +12,6 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.service.implementations.WalletItemServiceImpl;
-import com.vaadin.service.implementations.WalletServiceImpl;
 import com.vaadin.service.interfaces.WalletItemService;
 import com.vaadin.service.interfaces.WalletService;
 

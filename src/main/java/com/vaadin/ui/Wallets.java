@@ -11,6 +11,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.service.implementations.WalletServiceImpl;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.service.interfaces.WalletService;
 
 @CssImport("./styles/styles.css")
 @Route(value = "wallets", layout = MainLayout.class)
@@ -18,11 +19,11 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 public class Wallets extends VerticalLayout {
 
     private WalletForm form;
-    private WalletServiceImpl walletService;
+    private WalletService walletService;
 
     final Grid<Wallet> walletGrid = new Grid<>(Wallet.class);
 
-    public Wallets(WalletServiceImpl walletService) {
+    public Wallets(WalletService walletService) {
         this.walletService = walletService;
 
         addClassName("list-view");

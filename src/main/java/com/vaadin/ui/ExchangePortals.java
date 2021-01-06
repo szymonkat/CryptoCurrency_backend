@@ -13,6 +13,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.service.implementations.ExchangePortalServiceImpl;
+import com.vaadin.service.interfaces.ExchangePortalService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
@@ -25,13 +26,13 @@ import java.util.List;
 public class ExchangePortals extends VerticalLayout {
 
     private ExchangePortalForm exchangePortalForm;
-    private ExchangePortalServiceImpl exchangePortalService;
+    private ExchangePortalService exchangePortalService;
     @Autowired
     private ServiceFactory serviceFactory;
 
     final Grid<ExchangePortal> exchangePortalGrid = new Grid<>(ExchangePortal.class);
 
-    public ExchangePortals(ExchangePortalServiceImpl exchangePortalService) {
+    public ExchangePortals(ExchangePortalService exchangePortalService) {
         this.exchangePortalService = exchangePortalService;
 
         addClassName("list-view");
