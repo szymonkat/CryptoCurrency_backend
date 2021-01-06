@@ -153,6 +153,7 @@ public class Analyzer extends VerticalLayout {
         return component;
     }
 
+
     private boolean checkIfCurrencyExchangePortalExists(Currency currency) {
         return exchangePortalService.getExchangePortalsWithCurrency(currency).isEmpty();
     }

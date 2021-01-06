@@ -1,6 +1,8 @@
 package com.vaadin.ui;
 
+import com.vaadin.clientUi.WalletClient;
 import com.vaadin.domain.Wallet;
+import com.vaadin.dto.WalletDto;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.grid.Grid;
@@ -8,10 +10,12 @@ import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.mapper.WalletMapper;
 import com.vaadin.service.implementations.WalletServiceImpl;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.service.interfaces.WalletService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @CssImport("./styles/styles.css")
 @Route(value = "wallets", layout = MainLayout.class)
@@ -20,6 +24,11 @@ public class Wallets extends VerticalLayout {
 
     private WalletForm form;
     private WalletService walletService;
+
+    @Autowired
+    WalletClient walletClient;
+    @Autowired
+    WalletMapper walletMapper;
 
     final Grid<Wallet> walletGrid = new Grid<>(Wallet.class);
 
@@ -57,9 +66,15 @@ public class Wallets extends VerticalLayout {
     }
 
     private void saveWallet(WalletForm.SaveEvent evt) {
-        walletService.createWallet(evt.getWallet());
+        //walletService.createWallet(evt.getWallet());
         updateList();
         closeEditor();
+        showWallet();
+    }
+
+    private void showWallet() {
+        WalletDto walletDto = new WalletDto("przyklad2", null);
+        walletClient.createWallet(walletDto);
     }
 
     private HorizontalLayout getToolBar() {
