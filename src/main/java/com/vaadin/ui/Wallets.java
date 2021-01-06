@@ -11,7 +11,6 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.mapper.WalletMapper;
-import com.vaadin.service.implementations.WalletServiceImpl;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.service.interfaces.WalletService;
@@ -67,12 +66,12 @@ public class Wallets extends VerticalLayout {
 
     private void saveWallet(WalletForm.SaveEvent evt) {
         //walletService.createWallet(evt.getWallet());
+        clientAttempt();
         updateList();
         closeEditor();
-        showWallet();
     }
 
-    private void showWallet() {
+    private void clientAttempt() {
         WalletDto walletDto = new WalletDto("przyklad2", null);
         walletClient.createWallet(walletDto);
     }
