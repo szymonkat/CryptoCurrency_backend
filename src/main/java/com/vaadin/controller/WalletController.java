@@ -26,7 +26,7 @@ public class WalletController {
         return walletMapper.mapToWalletDto(walletService.findWalletById(walletId));
     }
 
-    @PostMapping
+    @PostMapping(consumes = "application/json")
     public WalletDto createWallet(@RequestBody WalletDto walletDto) {
         return walletMapper.mapToWalletDto(walletService.createWallet
                 (walletMapper.mapToWallet(walletDto)));
