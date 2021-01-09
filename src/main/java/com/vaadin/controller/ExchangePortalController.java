@@ -38,4 +38,9 @@ public class ExchangePortalController {
     public void deleteExchangePortal(@PathVariable Long exchangePortalId) {
         exchangePortalService.delete(exchangePortalId);
     }
+
+    @GetMapping("/currency")
+    public List<ExchangePortalDto> getExchangePortalsWithCurrency(@RequestParam Currency currency) {
+        return exchangePortalMapper.mapToExchangePortalDtoList(exchangePortalService.getExchangePortalsWithCurrency(currency));
+    }
 }
