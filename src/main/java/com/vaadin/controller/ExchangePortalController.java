@@ -34,6 +34,11 @@ public class ExchangePortalController {
         return exchangePortalMapper.mapToExchangePortalDtoList(exchangePortalService.getExchangePortals());
     }
 
+    @GetMapping("/id/{exchangePortalId}")
+    public ExchangePortalDto getExchangePortalById(@PathVariable Long exchangePortalId) {
+        return exchangePortalMapper.mapToExchangePortalDto(exchangePortalService.findExchangePortalById(exchangePortalId));
+    }
+
     @DeleteMapping("/{exchangePortalId}")
     public void deleteExchangePortal(@PathVariable Long exchangePortalId) {
         exchangePortalService.delete(exchangePortalId);

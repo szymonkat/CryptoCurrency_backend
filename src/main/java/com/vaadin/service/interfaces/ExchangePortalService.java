@@ -6,7 +6,7 @@ import com.vaadin.domain.ExchangePortal;
 import java.util.List;
 
 public interface ExchangePortalService {
-    ExchangePortal findExchangePortalById(final Long ExchangePortalId);
+    ExchangePortal findExchangePortalById(final Long exchangePortalId);
     List<ExchangePortal> getExchangePortals();
     List<ExchangePortal> getExchangePortalsWithCurrency(final Currency currency);
     ExchangePortal save (final ExchangePortal ExchangePortal);
