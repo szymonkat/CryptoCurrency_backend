@@ -29,9 +29,9 @@ public class WalletItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @SuppressWarnings("JpaDataSourceORMInspection")
+    //@SuppressWarnings("JpaDataSourceORMInspection")
     @NotNull
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="wallet_id")
     private Wallet wallet;
 

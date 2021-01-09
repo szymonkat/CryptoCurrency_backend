@@ -51,7 +51,6 @@ public class WalletItemServiceImpl implements WalletItemService {
 
     @Override
     public void deleteWalletItem(Long id) {
-        findWalletItemById(id);
         walletItemRepository.deleteById(id);
     }
 
