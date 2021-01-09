@@ -21,14 +21,21 @@ public class ExchangePortalController {
     private final ExchangePortalMapper exchangePortalMapper;
     private final ExchangePortalService exchangePortalService;
 
-    @GetMapping
+    @PostMapping
     public ExchangePortalDto createNewResponse(@RequestParam Currency currency,@RequestParam String serviceName) {
         ApiService apiService = serviceFactory.createService(serviceName);
-        return exchangePortalMapper.mapToExchangePortalDto(apiService.createExchangePortal(currency));
+        ExchangePortal exchangePortal = apiService.createExchangePortal(currency);
+        exchangePortalService.save(exchangePortal);
+        return exchangePortalMapper.mapToExchangePortalDto(exchangePortal);
     }
 
-    @GetMapping("/get")
+    @GetMapping
     public List<ExchangePortalDto> getExchangePortals() {
         return exchangePortalMapper.mapToExchangePortalDtoList(exchangePortalService.getExchangePortals());
+    }
+
+    @DeleteMapping("/{exchangePortalId}")
+    public void deleteExchangePortal(@PathVariable Long exchangePortalId) {
+        exchangePortalService.delete(exchangePortalId);
     }
 }
