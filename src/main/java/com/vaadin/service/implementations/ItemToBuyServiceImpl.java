@@ -25,7 +25,7 @@ public class ItemToBuyServiceImpl implements ItemToBuyService {
 
     @Override
     public ItemToBuy createItemToBuy(ItemToBuy itemToBuy) {
-        return itemToBuyRepository.findById(itemToBuy.getId()).orElse(itemToBuyRepository.save(itemToBuy));
+        return itemToBuyRepository.save(itemToBuy);
     }
 
     @Override
@@ -111,8 +111,4 @@ public class ItemToBuyServiceImpl implements ItemToBuyService {
         return false;
     }
 
-    private void checkFind(Long walletId, Long itemToBuyId) {
-        System.out.println("test");
-        finalizeItemToBuy(itemToBuyId, walletId);
-    }
 }

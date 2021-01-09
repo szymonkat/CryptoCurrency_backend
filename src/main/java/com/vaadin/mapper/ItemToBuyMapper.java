@@ -28,9 +28,15 @@ public class ItemToBuyMapper {
     }
 
     public ItemToBuyDto mapToItemToBuyDto(ItemToBuy itemToBuy) {
-        return new ItemToBuyDto(itemToBuy.getId(),
-                itemToBuy.getExchangePortal().getId(),
-                itemToBuy.getQuantityToBuy());
+        if (itemToBuy.getId() == null){
+            return new ItemToBuyDto(
+                    itemToBuy.getExchangePortal().getId(),
+                    itemToBuy.getQuantityToBuy());
+        } else {
+            return new ItemToBuyDto(itemToBuy.getId(),
+                    itemToBuy.getExchangePortal().getId(),
+                    itemToBuy.getQuantityToBuy());
+        }
     }
 
     public List<ItemToBuyDto> mapToItemToBuyDtoList(List<ItemToBuy> itemToBuyList) {

@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ExchangePortalMapper {
 
-    private final ItemToBuyMapper itemToBuyMapper;
     private final ItemToBuyService itemToBuyService;
 
     public ExchangePortal mapToExchangePortal(ExchangePortalDto exchangePortalDto) {
