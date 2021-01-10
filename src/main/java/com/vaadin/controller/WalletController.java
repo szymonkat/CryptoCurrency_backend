@@ -1,9 +1,6 @@
 package com.vaadin.controller;
 
-import com.vaadin.domain.WalletItem;
 import com.vaadin.dto.WalletDto;
-import com.vaadin.dto.WalletItemDto;
-import com.vaadin.mapper.WalletItemMapper;
 import com.vaadin.mapper.WalletMapper;
 import com.vaadin.service.interfaces.WalletService;
 import lombok.RequiredArgsConstructor;
