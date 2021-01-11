@@ -1,7 +1,7 @@
 package com.cryptoclient.client.coinlayer;
 
-import com.cryptoclient.domain.Currency;
 import com.cryptoclient.client.ApiService;
+import com.cryptoclient.domain.Currency;
 import com.cryptoclient.domain.ExchangePortal;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

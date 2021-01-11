@@ -1,8 +1,8 @@
 package com.cryptoclient.mapper;
 
 import com.cryptoclient.domain.WalletItem;
-import com.cryptoclient.service.interfaces.WalletService;
 import com.cryptoclient.dto.WalletItemDto;
+import com.cryptoclient.service.interfaces.WalletService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

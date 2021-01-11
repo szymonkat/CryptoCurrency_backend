@@ -6,7 +6,6 @@ import com.cryptoclient.domain.ExchangePortal;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
-
 import java.time.LocalDateTime;
 import java.util.List;
 

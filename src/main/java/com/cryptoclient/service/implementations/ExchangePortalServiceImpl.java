@@ -7,7 +7,6 @@ import com.cryptoclient.repository.ExchangePortalRepository;
 import com.cryptoclient.service.interfaces.ExchangePortalService;
 import lombok.RequiredArgsConstructor;
 
-
 import java.util.List;
 import java.util.stream.Collectors;
 

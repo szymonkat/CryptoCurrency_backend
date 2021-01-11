@@ -1,8 +1,8 @@
 package com.cryptoclient.service.implementations;
 
-import com.cryptoclient.exceptions.NoExchangePortalFoundException;
 import com.cryptoclient.domain.Currency;
 import com.cryptoclient.domain.ExchangePortal;
+import com.cryptoclient.exceptions.NoExchangePortalFoundException;
 import com.cryptoclient.service.interfaces.AnalyzerService;
 import com.cryptoclient.service.interfaces.ExchangePortalService;
 import lombok.RequiredArgsConstructor;

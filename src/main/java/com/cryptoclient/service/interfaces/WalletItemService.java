@@ -4,7 +4,6 @@ import com.cryptoclient.domain.Currency;
 import com.cryptoclient.domain.WalletItem;
 import com.cryptoclient.exceptions.NotFoundException;
 
-
 import java.util.List;
 
 

@@ -1,11 +1,11 @@
 package com.cryptoclient.config;
 
-import com.cryptoclient.service.implementations.*;
-import com.cryptoclient.service.interfaces.*;
 import com.cryptoclient.repository.ExchangePortalRepository;
 import com.cryptoclient.repository.ItemToBuyRepository;
 import com.cryptoclient.repository.WalletItemRepository;
 import com.cryptoclient.repository.WalletRepository;
+import com.cryptoclient.service.implementations.*;
+import com.cryptoclient.service.interfaces.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;

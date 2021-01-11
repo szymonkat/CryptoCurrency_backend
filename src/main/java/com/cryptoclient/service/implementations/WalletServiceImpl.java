@@ -1,11 +1,11 @@
 package com.cryptoclient.service.implementations;
 
-import com.cryptoclient.exceptions.NotFoundException;
-import com.cryptoclient.exceptions.WalletNotEmptyException;
-import com.cryptoclient.exceptions.WalletWithThatNameAlreadyExistException;
 import com.cryptoclient.domain.Currency;
 import com.cryptoclient.domain.Wallet;
 import com.cryptoclient.domain.WalletItem;
+import com.cryptoclient.exceptions.NotFoundException;
+import com.cryptoclient.exceptions.WalletNotEmptyException;
+import com.cryptoclient.exceptions.WalletWithThatNameAlreadyExistException;
 import com.cryptoclient.repository.WalletRepository;
 import com.cryptoclient.service.interfaces.WalletService;
 import lombok.RequiredArgsConstructor;
