@@ -4,7 +4,7 @@ plugins {
 	id 'java'
 }
 
-group = 'com.vaadin'
+group = 'com.cryptoclient'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
@@ -14,13 +14,9 @@ repositories {
 	maven { url 'https://repo.spring.io/snapshot' }
 }
 
-ext {
-	set('vaadinVersion', "14.4.2")
-}
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'com.vaadin:vaadin-spring-boot-starter'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'junit:junit:4.12'
 	runtimeOnly 'mysql:mysql-connector-java'
@@ -37,9 +33,6 @@ dependencies {
 }
 
 dependencyManagement {
-	imports {
-		mavenBom "com.vaadin:vaadin-bom:${vaadinVersion}"
-	}
 }
 
 test {
