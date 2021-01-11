@@ -39,6 +39,7 @@ public class Wallet {
     @OneToMany(targetEntity = WalletItem.class,
             fetch = FetchType.EAGER,
             mappedBy = "wallet",
+            orphanRemoval = true,
             cascade = CascadeType.ALL)
     private List<WalletItem> walletItemList;
 
