@@ -55,8 +55,6 @@ public class ExchangePortalControllerTestSuite {
     @MockBean
     private ApiService apiService;
 
-//    @MockBean
-//    private NomicsService nomicsService;
 
     @MockBean
     private NomicsClient nomicsClient;
@@ -67,7 +65,7 @@ public class ExchangePortalControllerTestSuite {
         List<ExchangePortalDto> exchangePortalDtoList = new ArrayList<>();
         when(exchangePortalMapper.mapToExchangePortalDtoList(exchangePortalService.getExchangePortals())).thenReturn(exchangePortalDtoList);
         //When & Then
-        mockMvc.perform(get("/v1/exchange/get").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/v1/exchange/").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(200)) // or isOk()
                 .andExpect(jsonPath("$", hasSize(0)));
     }
