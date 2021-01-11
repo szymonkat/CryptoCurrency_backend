@@ -33,6 +33,7 @@ public class Wallet {
     private Long id;
 
     @NotEmpty
+    @Column(unique = true)
     private String name;
 
     @OneToMany(targetEntity = WalletItem.class,
@@ -65,7 +66,7 @@ public class Wallet {
     @Override
     public int hashCode() {
         int result = id.hashCode();
-        result = 31 * result + name.hashCode();
+        result = 31 + name.hashCode();
         result = 31 * result + (walletItemList != null ? walletItemList.hashCode() : 0);
         return result;
     }

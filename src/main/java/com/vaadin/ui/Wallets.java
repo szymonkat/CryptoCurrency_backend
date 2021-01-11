@@ -1,6 +1,5 @@
 package com.vaadin.ui;
 
-import com.vaadin.clientUi.WalletClient;
 import com.vaadin.domain.Wallet;
 import com.vaadin.dto.WalletDto;
 import com.vaadin.flow.component.dependency.CssImport;
