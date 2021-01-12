@@ -52,6 +52,14 @@ public class Wallet {
         this.walletItemList = walletItemList;
     }
 
+    // to test 
+    public void setWalletItemsMethod (List<WalletItem> aSet) {
+        this.walletItemList.clear();
+        if (aSet != null) {
+            this.walletItemList.addAll(aSet);
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
