@@ -10,6 +10,8 @@ import com.cryptoclient.service.interfaces.WalletService;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 @RequiredArgsConstructor
 public class WalletItemServiceImpl implements WalletItemService {
 
@@ -51,6 +53,20 @@ public class WalletItemServiceImpl implements WalletItemService {
 
     @Override
     public void deleteWalletItem(Long id) {
+        WalletItem walletItem = findWalletItemById(id);
+        Long walletId = walletItem.getWallet().getId();
+        Wallet wallet = walletService.findWalletById(walletId);
+        List<WalletItem> originalList = wallet.getWalletItemList();
+
+        List<WalletItem> listWithOnlyWalletItem = originalList.stream()
+                .filter(n -> n.getId() == id)
+                .collect(Collectors.toList());
+
+        originalList.removeAll(listWithOnlyWalletItem);
+
+        wallet.setWalletItemList(null);
+        wallet.setWalletItemList(originalList);
+
         walletItemRepository.deleteById(id);
     }
 
