@@ -10,7 +10,7 @@ Project is not uploaded to remote server yet.
 ### 3. Requirements
 Please make sure You have following software:
 1) Java 11
-2) Gradle 5.5.1
+2) Gradle 6.6.1
 3) MySQL
 
 ### 4. Project
@@ -19,7 +19,7 @@ Please make sure You have following software:
 ### 5. Endpoint description
 
 ### 6. Future plans
-We are planning to improve our project with:
+Plans:
 1) Spring authentication
 2) Transactional features
 3) Automatic mailing features

@@ -52,7 +52,7 @@ public class Wallet {
         this.walletItemList = walletItemList;
     }
 
-    // to test 
+    // to test
     public void setWalletItemsMethod (List<WalletItem> aSet) {
         this.walletItemList.clear();
         if (aSet != null) {
