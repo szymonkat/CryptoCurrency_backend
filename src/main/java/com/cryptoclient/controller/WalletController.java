@@ -34,7 +34,7 @@ public class WalletController {
 
     @PutMapping(consumes = "application/json")
     public WalletDto updateWallet(@RequestBody WalletDto walletDto) {
-        return walletMapper.mapToWalletDto(walletService.updateWallet
+        return walletMapper.mapToWalletDto(walletService.updateWalletName
                 (walletMapper.mapToWallet(walletDto)));
     }
 

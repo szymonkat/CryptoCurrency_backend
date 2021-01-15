@@ -40,14 +40,12 @@ public class WalletServiceImpl implements WalletService {
     }
 
     @Override
-    public Wallet updateWallet(Wallet wallet) throws NotFoundException {
+    public Wallet updateWalletName(Wallet wallet) throws NotFoundException {
         Wallet returnedWallet = walletRepository.findById(wallet.getId())
                 .orElseThrow(() -> new NotFoundException("Wallet with id: " + wallet.getId() + " does not exist"));
 
-        returnedWallet.setWalletItemList(null);
-
         returnedWallet.setName(wallet.getName());
-        returnedWallet.setWalletItemList(wallet.getWalletItemList());
+
         save(returnedWallet);
         return returnedWallet;
     }

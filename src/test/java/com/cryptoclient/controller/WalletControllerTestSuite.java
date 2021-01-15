@@ -105,7 +105,7 @@ public class WalletControllerTestSuite {
         Gson gson = new Gson();
         String jsonContent = gson.toJson(walletDto1);
 
-        when(walletMapper.mapToWalletDto(walletService.updateWallet
+        when(walletMapper.mapToWalletDto(walletService.updateWalletName
                 (walletMapper.mapToWallet(walletDto1)))).thenReturn(walletDto1);
 
         //When & Then

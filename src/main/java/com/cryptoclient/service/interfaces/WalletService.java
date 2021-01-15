@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface WalletService {
     Wallet createWallet(final Wallet wallet);
-    Wallet updateWallet(final Wallet wallet) throws NotFoundException;
+    Wallet updateWalletName(final Wallet wallet) throws NotFoundException;
     Wallet findWalletById(final Long walletId);
     boolean checkIfExistsById(final Long walletId);
     List<Wallet> getWallets();
