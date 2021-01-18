@@ -91,12 +91,4 @@ public class WalletServiceImpl implements WalletService {
         }
         return fundsUsd;
     }
-
-
-
-    public List<Long> getWalletsId() {
-        final List<Long> list = walletRepository.retrieveWalletsId();
-        return list;
-    }
-
 }

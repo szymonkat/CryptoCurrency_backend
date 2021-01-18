@@ -7,9 +7,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import java.util.*;
+
+import static org.junit.Assert.assertEquals;
+
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -21,22 +25,117 @@ public class WalletTestSuite {
     @Autowired
     private WalletRepository walletRepository;
 
-    private Wallet wallet = new Wallet("TestWallet");
-
     @Test
-    public void shouldGetAllWallets() {
+    public void shouldFindWalletById() {
         //Given
-        
+        Wallet wallet = new Wallet("Random_name_test");
         //When
         Wallet createdWallet = walletService.createWallet(wallet);
+        Long createdWalletId = createdWallet.getId();
+        Wallet walletFound = walletService.findWalletById(createdWalletId);
         //Then
-        assertNotEquals(createdWallet.getId(), null);
+        assertEquals(createdWallet.getId(), walletFound.getId());
+        assertEquals(createdWallet.getName(), walletFound.getName());
         //Cleanup
         walletRepository.deleteById(createdWallet.getId());
     }
-}
 
-//Given
-//When
-//Then
-//Cleanup
+    @Test
+    public void shouldGetWallets() {
+        //Given
+        Wallet wallet1 = new Wallet("TestWallet1");
+        Wallet wallet2 = new Wallet("TestWallet2");
+        Wallet wallet3 = new Wallet("TestWallet3");
+        List<Wallet> walletList = new ArrayList<>();
+        //When
+        walletService.createWallet(wallet1);
+        walletService.createWallet(wallet2);
+        walletService.createWallet(wallet3);
+
+        walletList = walletService.getWallets();
+
+        //Then
+        assertEquals(walletList.size(), 3);
+        //Cleanup
+        walletRepository.deleteById(wallet1.getId());
+        walletRepository.deleteById(wallet2.getId());
+        walletRepository.deleteById(wallet3.getId());
+    }
+
+
+    @Test
+    public void shouldCreateAllWallet() {
+        //Given
+
+        //When
+
+        //Then
+
+        //Cleanup
+
+    }
+
+    @Test
+    public void shouldUpdateWalletsName() {
+        //Given
+
+        //When
+
+        //Then
+
+        //Cleanup
+
+    }
+
+
+    @Test
+    public void shouldDeleteWallet() {
+        //Given
+
+        //When
+
+        //Then
+
+        //Cleanup
+
+    }
+
+
+    @Test
+    public void shouldSaveWallet() {
+        //Given
+
+        //When
+
+        //Then
+
+        //Cleanup
+
+    }
+
+
+    @Test
+    public void shouldCheckIfWalletExistsById() {
+        //Given
+
+        //When
+
+        //Then
+
+        //Cleanup
+    }
+
+
+    @Test
+    public void shouldCheckHowManyUsdWalletHas() {
+        //Given
+
+        //When
+
+        //Then
+
+        //Cleanup
+
+    }
+
+}
