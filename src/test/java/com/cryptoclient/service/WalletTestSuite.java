@@ -3,6 +3,7 @@ package com.cryptoclient.service;
 import com.cryptoclient.domain.Wallet;
 import com.cryptoclient.repository.WalletRepository;
 import com.cryptoclient.service.interfaces.WalletService;
+import org.hamcrest.collection.IsEmptyCollection;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,13 +11,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import javax.validation.constraints.AssertTrue;
 import java.util.*;
 
+import static org.assertj.core.api.Assertions.not;
 import static org.junit.Assert.assertEquals;
 
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
+@TestPropertySource("classpath:application.properties")
 public class WalletTestSuite {
 
     @Autowired
@@ -28,7 +32,7 @@ public class WalletTestSuite {
     @Test
     public void shouldFindWalletById() {
         //Given
-        Wallet wallet = new Wallet("Random_name_test");
+        Wallet wallet = new Wallet("Test");
         //When
         Wallet createdWallet = walletService.createWallet(wallet);
         Long createdWalletId = createdWallet.getId();
@@ -55,7 +59,8 @@ public class WalletTestSuite {
         walletList = walletService.getWallets();
 
         //Then
-        assertEquals(walletList.size(), 3);
+        assertEquals(walletList.size(), not(IsEmptyCollection.empty()));
+
         //Cleanup
         walletRepository.deleteById(wallet1.getId());
         walletRepository.deleteById(wallet2.getId());
