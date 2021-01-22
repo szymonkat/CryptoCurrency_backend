@@ -66,11 +66,6 @@ public class WalletServiceImpl implements WalletService {
         return walletRepository.save(wallet);
     }
 
-    public List<Wallet> getWalletsSql() {
-        final List<Wallet> list = walletRepository.retrieveWallets();
-        return list;
-    }
-
     @Override
     public boolean checkIfExistsById(Long walletId) {
         return walletRepository.existsById(walletId);
@@ -90,5 +85,10 @@ public class WalletServiceImpl implements WalletService {
             fundsUsd = 0.0;
         }
         return fundsUsd;
+    }
+
+    public List<Wallet> getWalletsSql() {
+        final List<Wallet> list = walletRepository.retrieveWallets();
+        return list;
     }
 }

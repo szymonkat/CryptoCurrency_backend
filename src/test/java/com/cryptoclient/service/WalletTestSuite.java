@@ -4,6 +4,7 @@ import com.cryptoclient.domain.Wallet;
 import com.cryptoclient.repository.WalletRepository;
 import com.cryptoclient.service.interfaces.WalletService;
 import org.hamcrest.collection.IsEmptyCollection;
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
@@ -16,16 +17,17 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.not;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 
-@ExtendWith({SpringExtension.class})
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
-@PropertySource("application-test.properties")
 public class WalletTestSuite {
 
     @Autowired
@@ -34,10 +36,13 @@ public class WalletTestSuite {
     @Autowired
     private WalletRepository walletRepository;
 
+    LocalDateTime now = LocalDateTime.now();
+    String various = now.toString();
+
     @Test
     public void shouldFindWalletById() {
         //Given
-        Wallet wallet = new Wallet("Test");
+        Wallet wallet = new Wallet(various);
         //When
         Wallet createdWallet = walletService.createWallet(wallet);
         Long createdWalletId = createdWallet.getId();
@@ -52,9 +57,9 @@ public class WalletTestSuite {
     @Test
     public void shouldGetWallets() {
         //Given
-        Wallet wallet1 = new Wallet("TestWallet1");
-        Wallet wallet2 = new Wallet("TestWallet2");
-        Wallet wallet3 = new Wallet("TestWallet3");
+        Wallet wallet1 = new Wallet(various + "1");
+        Wallet wallet2 = new Wallet(various + "2");
+        Wallet wallet3 = new Wallet(various + "3");
         List<Wallet> walletList = new ArrayList<>();
         //When
         walletService.createWallet(wallet1);
@@ -64,7 +69,7 @@ public class WalletTestSuite {
         walletList = walletService.getWallets();
 
         //Then
-        assertEquals(walletList.size(), not(IsEmptyCollection.empty()));
+        assertTrue(!walletList.isEmpty());
 
         //Cleanup
         walletRepository.deleteById(wallet1.getId());
@@ -76,11 +81,11 @@ public class WalletTestSuite {
     @Test
     public void shouldCreateWallet() {
         //Given
-        Wallet wallet = new Wallet("testWallet5");
+        Wallet wallet = new Wallet(various + "4");
         //When
         Wallet newWallet = walletService.createWallet(wallet);
         //Then
-        assertEquals("testWallet", newWallet.getName());
+        assertEquals(various + "4", newWallet.getName());
         //Cleanup
         walletRepository.deleteById(wallet.getId());
     }
@@ -88,39 +93,50 @@ public class WalletTestSuite {
     @Test
     public void shouldUpdateWalletsName() {
         //Given
-
+        Wallet wallet = new Wallet(various + "5");
+        walletService.createWallet(wallet);
+        Long walletId = wallet.getId();
+        Wallet updatedWallet = new Wallet(various + "6");
+        updatedWallet.setId(walletId);
         //When
-
+        Wallet newWallet = walletService.updateWalletName(updatedWallet);
         //Then
-
+        assertEquals(newWallet.getId(), updatedWallet.getId());
+        assertEquals(newWallet.getName(), updatedWallet.getName());
         //Cleanup
-
+        walletRepository.deleteById(newWallet.getId());
     }
 
 
     @Test
     public void shouldDeleteWallet() {
         //Given
-
+        Wallet wallet = new Wallet(various + "7");
+        walletService.createWallet(wallet);
+        Long walletId = wallet.getId();
+        List<Wallet> walletList = new ArrayList<>();
+        walletList = walletService.getWallets();
+        int walletListSize = walletList.size();
         //When
-
+        walletService.deleteWallet(walletId);
         //Then
-
+        walletList = walletService.getWallets();
+        int walletListAfterDelete = walletList.size();
+        assertEquals(walletListSize, walletListAfterDelete + 1);
         //Cleanup
-
     }
 
 
     @Test
     public void shouldSaveWallet() {
         //Given
-
+        Wallet wallet = new Wallet(various + "8");
         //When
-
+        walletRepository.save(wallet);
         //Then
-
+        //assertEquals();
         //Cleanup
-
+        //walletRepository.deleteById(newWallet.getId());
     }
 
 
