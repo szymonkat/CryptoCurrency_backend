@@ -86,9 +86,4 @@ public class WalletServiceImpl implements WalletService {
         }
         return fundsUsd;
     }
-
-    public List<Wallet> getWalletsSql() {
-        final List<Wallet> list = walletRepository.retrieveWallets();
-        return list;
-    }
 }

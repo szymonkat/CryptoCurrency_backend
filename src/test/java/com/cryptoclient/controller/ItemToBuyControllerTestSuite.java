@@ -5,7 +5,7 @@ import com.cryptoclient.mapper.ItemToBuyMapper;
 import com.cryptoclient.service.interfaces.ItemToBuyService;
 import com.google.gson.Gson;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -96,7 +96,7 @@ public class ItemToBuyControllerTestSuite {
     }
 
     @Test
-    void updateItemToBuyTest() throws Exception {
+    public void updateItemToBuyTest() throws Exception {
         //Given
         ItemToBuyDto itemToBuyDto2 = new ItemToBuyDto(3L, 4L, 45.0);
 
@@ -119,7 +119,7 @@ public class ItemToBuyControllerTestSuite {
     }
 
     @Test
-    void finalizeItemToBuyTest() throws Exception {
+    public void finalizeItemToBuyTest() throws Exception {
         //Given
         //When & Then
         mockMvc.perform(get("/v1/items/finalize/2")
@@ -131,7 +131,7 @@ public class ItemToBuyControllerTestSuite {
     }
 
     @Test
-    void deleteItemToBuyTest() throws Exception {
+    public void deleteItemToBuyTest() throws Exception {
         //Given
         //When & Then
         mockMvc.perform(delete("/v1/items/1")

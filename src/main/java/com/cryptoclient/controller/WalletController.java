@@ -43,8 +43,4 @@ public class WalletController {
         walletService.deleteWallet(walletId);
     }
 
-    @GetMapping("/checkUsd/{walletId}")
-    public void checkHowManyUsdWalletHas(@PathVariable Long walletId) {
-        System.out.println(walletService.checkHowManyUsdWalletHas(walletId));
-    }
 }

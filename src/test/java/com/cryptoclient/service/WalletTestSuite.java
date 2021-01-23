@@ -1,27 +1,20 @@
 package com.cryptoclient.service;
 
+import com.cryptoclient.domain.Currency;
 import com.cryptoclient.domain.Wallet;
+import com.cryptoclient.domain.WalletItem;
 import com.cryptoclient.repository.WalletRepository;
 import com.cryptoclient.service.interfaces.WalletService;
-import org.hamcrest.collection.IsEmptyCollection;
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.test.context.ActiveProfiles;
-
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.not;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -107,7 +100,6 @@ public class WalletTestSuite {
         walletRepository.deleteById(newWallet.getId());
     }
 
-
     @Test
     public void shouldDeleteWallet() {
         //Given
@@ -126,42 +118,48 @@ public class WalletTestSuite {
         //Cleanup
     }
 
-
     @Test
     public void shouldSaveWallet() {
         //Given
         Wallet wallet = new Wallet(various + "8");
         //When
-        walletRepository.save(wallet);
+        walletService.save(wallet);
+        Long walletId = wallet.getId();
         //Then
-        //assertEquals();
+        assertEquals(walletService.findWalletById(walletId).getName(), various + "8");
         //Cleanup
-        //walletRepository.deleteById(newWallet.getId());
+        walletRepository.deleteById(wallet.getId());
     }
-
 
     @Test
     public void shouldCheckIfWalletExistsById() {
         //Given
-
+        Wallet wallet = new Wallet(various + "9");
+        walletService.save(wallet);
         //When
-
+        boolean walletExists = walletService.checkIfExistsById(wallet.getId());
         //Then
-
+        assertEquals(walletExists, true);
         //Cleanup
+        walletRepository.deleteById(wallet.getId());
     }
 
 
     @Test
     public void shouldCheckHowManyUsdWalletHas() {
         //Given
-
+        Wallet wallet = new Wallet(various + "10");
+        List<WalletItem> walletItemList = new ArrayList<>();
+        WalletItem walletItem = new WalletItem(wallet, Currency.USD, 200.0);
+        walletItemList.add(walletItem);
+        wallet.setWalletItemList(walletItemList);
         //When
-
+        walletService.save(wallet);
+        Double usdQuantity = walletService.checkHowManyUsdWalletHas(wallet.getId());
         //Then
-
+        assertEquals(usdQuantity, 200.0, 0.01);
         //Cleanup
-
+        walletRepository.deleteById(wallet.getId());
     }
 
 }
