@@ -29,6 +29,10 @@ public class WalletItemTestSuite {
 
     @Test
     public void shouldModifyWallet() {
+        //Given
+        //When
+        //Then
+        //CleanUp
     }
 
     @Test
@@ -58,5 +62,5 @@ public class WalletItemTestSuite {
     @Test
     public void shouldReturnCurrencyWalletItem() {
     }
-    
+
 }
