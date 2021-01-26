@@ -13,8 +13,6 @@ public interface WalletItemRepository extends JpaRepository<WalletItem, Long> {
     @Override
     <S extends WalletItem> S save(S WalletItem);
 
-    @Query
-    List<WalletItem> retrieveWalletItems();
 
     Boolean existsByCurrencyAndWallet(Currency currency, Wallet wallet);
     WalletItem findByCurrencyAndWallet(Currency currency, Wallet wallet);

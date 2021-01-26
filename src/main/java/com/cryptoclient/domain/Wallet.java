@@ -14,17 +14,6 @@ import java.util.Objects;
 @NoArgsConstructor
 @Getter
 @Setter
-
-@NamedNativeQuery(
-        name = "Wallet.retrieveWallets",
-        query = "SELECT * FROM wallets",
-        resultClass = Wallet.class
-)
-
-@NamedNativeQuery(
-        name = "Wallet.retrieveWalletsId",
-        query = "SELECT id FROM wallets"
-)
 @Entity(name = "WALLETS")
 public class Wallet {
 
@@ -52,13 +41,6 @@ public class Wallet {
         this.walletItemList = walletItemList;
     }
 
-    // to test
-    public void setWalletItemsMethod (List<WalletItem> aSet) {
-        this.walletItemList.clear();
-        if (aSet != null) {
-            this.walletItemList.addAll(aSet);
-        }
-    }
 
     @Override
     public boolean equals(Object o) {

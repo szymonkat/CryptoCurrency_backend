@@ -44,8 +44,4 @@ public class ExchangePortalServiceImpl implements ExchangePortalService {
        exchangePortalRepository.deleteById(exchangePortalId);
     }
 
-    public List<ExchangePortal> getExchangePortalsSql() {
-        final List<ExchangePortal> list = exchangePortalRepository.retrieveExchangePortals();
-        return list;
-    }
 }

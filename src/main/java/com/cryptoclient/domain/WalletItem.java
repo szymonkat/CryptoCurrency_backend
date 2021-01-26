@@ -9,11 +9,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
-@NamedNativeQuery(
-        name = "WalletItem.retrieveWalletItems",
-        query = "SELECT * FROM wallet_items",
-        resultClass = WalletItem.class
-)
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

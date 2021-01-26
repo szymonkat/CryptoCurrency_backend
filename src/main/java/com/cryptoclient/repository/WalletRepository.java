@@ -12,12 +12,5 @@ public interface WalletRepository extends JpaRepository<Wallet, Long> {
     @Override
     <S extends Wallet> S save(S Wallet);
 
-    @Query
-    List<Wallet> retrieveWallets();
-
-    @Query
-    List<Long> retrieveWalletsId();
-
-
     Optional<Wallet> findByName(String name);
 }

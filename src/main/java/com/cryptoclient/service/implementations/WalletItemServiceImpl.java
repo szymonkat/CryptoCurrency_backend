@@ -109,9 +109,4 @@ public class WalletItemServiceImpl implements WalletItemService {
         }
         return walletItem;
     }
-
-    public List<WalletItem> getWalletItemsSql() {
-        final List<WalletItem> list = walletItemRepository.retrieveWalletItems();
-        return list;
-    }
 }

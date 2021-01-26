@@ -11,6 +11,4 @@ public interface ExchangePortalRepository extends JpaRepository<ExchangePortal, 
     @Override
     <S extends ExchangePortal> S save(S ExchangePortal);
 
-    @Query
-    List<ExchangePortal> retrieveExchangePortals();
 }

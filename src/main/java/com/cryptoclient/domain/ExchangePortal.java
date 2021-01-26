@@ -8,12 +8,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@NamedNativeQuery(
-        name = "ExchangePortal.retrieveExchangePortals",
-        query = "SELECT * FROM exchange_portals",
-        resultClass = ExchangePortal.class
-)
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
