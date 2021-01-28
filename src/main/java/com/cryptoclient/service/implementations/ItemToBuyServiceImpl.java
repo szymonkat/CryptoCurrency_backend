@@ -30,15 +30,6 @@ public class ItemToBuyServiceImpl implements ItemToBuyService {
     }
 
     @Override
-    public ItemToBuy updateItemToBuy(ItemToBuy itemToBuy) throws NotFoundException {
-        ItemToBuy returnedItemToBuy = findItemToBuyById(itemToBuy.getId());
-        returnedItemToBuy.setExchangePortal(itemToBuy.getExchangePortal());
-        returnedItemToBuy.setQuantityToBuy(itemToBuy.getQuantityToBuy());
-        save(returnedItemToBuy);
-        return returnedItemToBuy;
-    }
-
-    @Override
     public ItemToBuy findItemToBuyById(Long itemToBuyId) {
         return itemToBuyRepository.findById(itemToBuyId).orElseThrow(
                 () -> new NotFoundException("Item to buy with id " + itemToBuyId + " does not exist"));
@@ -94,11 +85,6 @@ public class ItemToBuyServiceImpl implements ItemToBuyService {
                     throw new NotEnoughUsdInTheWalletException("You don't have sufficient funds in USD");
                 else throw new NotFoundException("Common error");
             }
-    }
-
-    @Override
-    public boolean checkIfExists(Long itemToBuyId) {
-        return itemToBuyRepository.existsById(itemToBuyId);
     }
 
     private boolean checkIfTimeIsNotOlderThen20Min(ExchangePortal exchangePortal) {

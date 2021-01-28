@@ -95,7 +95,7 @@ public class ItemToBuyControllerTestSuite {
                 .andDo(MockMvcResultHandlers.print());
     }
 
-    @Test
+/*    @Test
     public void updateItemToBuyTest() throws Exception {
         //Given
         ItemToBuyDto itemToBuyDto2 = new ItemToBuyDto(3L, 4L, 45.0);
@@ -116,7 +116,7 @@ public class ItemToBuyControllerTestSuite {
                 .andExpect(jsonPath("$.id", is(3)))
                 .andExpect(jsonPath("$.exchangePortalId", is(4)))
                 .andExpect(jsonPath("$.quantityToBuy", is(45.0)));
-    }
+    }*/
 
     @Test
     public void finalizeItemToBuyTest() throws Exception {

@@ -88,7 +88,7 @@ public class WalletItemControllerTestSuite {
         Gson gson = new Gson();
         String jsonContent = gson.toJson(walletItemDto1);
 
-        when(walletItemMapper.mapToWalletItemDto(walletItemService.modifyWalletItem
+        when(walletItemMapper.mapToWalletItemDto(walletItemService.postWalletItem
                 (walletItemMapper.mapToWalletItem(walletItemDto1)))).thenReturn(walletItemDto1);
 
         //When & Then

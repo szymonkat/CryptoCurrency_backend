@@ -19,7 +19,7 @@ public class WalletItemServiceImpl implements WalletItemService {
     private final WalletService walletService;
 
     @Override
-    public WalletItem modifyWalletItem(WalletItem walletItem) {
+    public WalletItem postWalletItem(WalletItem walletItem) {
         if (walletItemRepository.existsByCurrencyAndWallet(walletItem.getCurrency(), walletItem.getWallet())) {
             WalletItem walletItemDraft = walletItemRepository.findByCurrencyAndWallet(walletItem.getCurrency(), walletItem.getWallet());
             Double newQuantity = walletItemDraft.getQuantity() + walletItem.getQuantity();
@@ -29,6 +29,13 @@ public class WalletItemServiceImpl implements WalletItemService {
            return walletItemRepository.save(walletItem);
         }
     }
+
+/*    public void updateWallet(WalletItem walletItem) {
+        Wallet updateWallet = walletService.findWalletById(walletItem.getWallet().getId());
+        updateWallet.addWalletItem(walletItem);
+        walletService.save(updateWallet);
+    }*/
+
 
     @Override
     public WalletItem updateWalletItem(WalletItem walletItem) throws NotFoundException {
@@ -105,7 +112,7 @@ public class WalletItemServiceImpl implements WalletItemService {
             walletItem.setCurrency(currency);
             walletItem.setQuantity(0.0);
             walletItem.setWallet(wallet);
-            modifyWalletItem(walletItem);
+            postWalletItem(walletItem);
         }
         return walletItem;
     }

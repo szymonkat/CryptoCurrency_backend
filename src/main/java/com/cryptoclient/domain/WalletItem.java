@@ -59,4 +59,14 @@ public class WalletItem {
         result = 31 * result + quantity.hashCode();
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "WalletItem{" +
+                "id=" + id +
+                ", wallet=" + wallet +
+                ", currency=" + currency +
+                ", quantity=" + quantity +
+                '}';
+    }
 }

@@ -32,12 +32,6 @@ public class ItemToBuyController {
                 (itemToBuyMapper.mapToItemToBuy(itemToBuyDto))));
     }
 
-    @PutMapping
-    public ItemToBuyDto updateItemToBuy(@RequestBody ItemToBuyDto itemToBuyDto) {
-        return itemToBuyMapper.mapToItemToBuyDto(itemToBuyService.updateItemToBuy
-                (itemToBuyMapper.mapToItemToBuy(itemToBuyDto)));
-    }
-
     @GetMapping("/finalize/{walletId}")
     public void finalizeItemToBuy(@PathVariable Long walletId, @RequestParam Long itemToBuyId) {
         itemToBuyService.finalizeItemToBuy(itemToBuyId, walletId);

@@ -27,8 +27,8 @@ public class WalletItemController {
     }
 
     @PostMapping
-    public WalletItemDto modifyWalletItem(@RequestBody WalletItemDto walletItemDto) {
-        return walletItemMapper.mapToWalletItemDto(walletItemService.modifyWalletItem
+    public WalletItemDto postWalletItem(@RequestBody WalletItemDto walletItemDto) {
+        return walletItemMapper.mapToWalletItemDto(walletItemService.postWalletItem
                 (walletItemMapper.mapToWalletItem(walletItemDto)));
     }
 

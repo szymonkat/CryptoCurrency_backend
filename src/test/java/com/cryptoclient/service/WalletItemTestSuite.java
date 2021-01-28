@@ -16,6 +16,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
+
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class WalletItemTestSuite {
@@ -34,22 +36,25 @@ public class WalletItemTestSuite {
     Wallet wallet = new Wallet(various + "1");
 
 
-    @Test
+/*    @Test
     public void shouldModifyWallet() {
         //Given
         walletService.createWallet(wallet);
         WalletItem walletItem = new WalletItem(wallet, Currency.USD, 300.0);
         walletItemService.save(walletItem);
         Long walletItemLong = walletItem.getId();
-
         WalletItem newWalletItem = new WalletItem(wallet, Currency.BTC, 200.0);
-
+        newWalletItem.setId(walletItemLong);
         //When
         walletItemService.modifyWalletItem(newWalletItem);
+        WalletItem updatedWalletItem = walletItemService.findWalletItemById(walletItemLong);
         //Then
-        // DO POPRAWKI ALBO USUNIECIA JEZELI NIKT NIE KORZYSTA
+        assertEquals(updatedWalletItem.getCurrency(), newWalletItem.getCurrency());
+        assertEquals(updatedWalletItem.getQuantity(), newWalletItem.getQuantity());
         //CleanUp
-    }
+        //walletItemRepository.deleteById(walletItemLong);
+
+    }*/
 
     @Test
     public void shouldUpdateWalletItem() {

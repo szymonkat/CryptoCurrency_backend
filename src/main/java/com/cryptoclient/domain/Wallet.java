@@ -40,7 +40,14 @@ public class Wallet {
         this.name = name;
         this.walletItemList = walletItemList;
     }
+/*
+    public void addWalletItem(WalletItem walletItem) {
+        walletItemList.add(walletItem);
+    }
 
+    public void removeWalletItem(WalletItem walletItem) {
+        walletItemList.remove(walletItem);
+    }*/
 
     @Override
     public boolean equals(Object o) {

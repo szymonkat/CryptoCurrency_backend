@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface WalletItemService {
 
-    WalletItem modifyWalletItem(final WalletItem walletItem);
+    WalletItem postWalletItem(final WalletItem walletItem);
     WalletItem updateWalletItem(final WalletItem walletItem) throws NotFoundException;
     WalletItem findWalletItemById(final Long walletItemId);
     List<WalletItem> getWalletItems();
