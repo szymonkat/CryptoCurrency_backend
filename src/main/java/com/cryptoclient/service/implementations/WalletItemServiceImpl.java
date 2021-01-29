@@ -36,7 +36,6 @@ public class WalletItemServiceImpl implements WalletItemService {
         walletService.save(updateWallet);
     }*/
 
-
     @Override
     public WalletItem updateWalletItem(WalletItem walletItem) throws NotFoundException {
         WalletItem returnedWalletItem = findWalletItemById(walletItem.getId());

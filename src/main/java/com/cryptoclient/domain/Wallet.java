@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,7 +31,15 @@ public class Wallet {
             mappedBy = "wallet",
             orphanRemoval = true,
             cascade = CascadeType.ALL)
-    private List<WalletItem> walletItemList;
+    private List<WalletItem> walletItemList = new ArrayList<>();
+
+    public void addWalletItem(WalletItem walletItem) {
+        walletItemList.add(walletItem);
+    }
+
+    public void removeWalletItem(WalletItem walletItem) {
+        walletItemList.remove(walletItem);
+    }
 
     public Wallet(String name) {
         this.name = name;
@@ -40,14 +49,6 @@ public class Wallet {
         this.name = name;
         this.walletItemList = walletItemList;
     }
-/*
-    public void addWalletItem(WalletItem walletItem) {
-        walletItemList.add(walletItem);
-    }
-
-    public void removeWalletItem(WalletItem walletItem) {
-        walletItemList.remove(walletItem);
-    }*/
 
     @Override
     public boolean equals(Object o) {

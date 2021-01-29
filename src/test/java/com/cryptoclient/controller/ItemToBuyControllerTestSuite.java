@@ -95,29 +95,6 @@ public class ItemToBuyControllerTestSuite {
                 .andDo(MockMvcResultHandlers.print());
     }
 
-/*    @Test
-    public void updateItemToBuyTest() throws Exception {
-        //Given
-        ItemToBuyDto itemToBuyDto2 = new ItemToBuyDto(3L, 4L, 45.0);
-
-        Gson gson = new Gson();
-        String jsonContent = gson.toJson(itemToBuyDto2);
-
-        when(itemToBuyMapper.mapToItemToBuyDto(itemToBuyService.updateItemToBuy
-                (itemToBuyMapper.mapToItemToBuy(itemToBuyDto2)))).thenReturn(itemToBuyDto2);
-
-        //When & Then
-        mockMvc.perform(put("/v1/items")
-                .contentType(MediaType.APPLICATION_JSON)
-                .characterEncoding("UTF-8")
-                .content(jsonContent))
-                .andExpect(status().isOk())
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(jsonPath("$.id", is(3)))
-                .andExpect(jsonPath("$.exchangePortalId", is(4)))
-                .andExpect(jsonPath("$.quantityToBuy", is(45.0)));
-    }*/
-
     @Test
     public void finalizeItemToBuyTest() throws Exception {
         //Given

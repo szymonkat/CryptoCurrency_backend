@@ -57,10 +57,6 @@ public class ItemToBuyTestSuite {
 
     ItemToBuy itemToBuy = new ItemToBuy(exchangePortal, 200.0);
 
-
-
-
-
     @Test
     public void shouldCreateItemToBuy() {
         //Given
@@ -139,14 +135,15 @@ public class ItemToBuyTestSuite {
         walletService.save(wallet);
         Long walletLong = wallet.getId();
 
-        WalletItem walletItem = new WalletItem(walletService.findWalletById(walletLong), Currency.USD, 1000000.0);
+        WalletItem walletItem = new WalletItem(wallet, Currency.USD, 1000000.0);
         walletItemService.postWalletItem(walletItem);
         Long walletItemLong = walletItem.getId();
 
+        wallet.addWalletItem(walletItem);
 
         //When
-
-       //itemToBuyService.finalizeItemToBuy(itemToBuyLong, walletLong);
+        System.out.println(itemToBuyService.findItemToBuyById(itemToBuyLong));
+        itemToBuyService.finalizeItemToBuy(itemToBuyLong, walletLong);
 
         //Then
         System.out.println(walletLong);
@@ -155,15 +152,8 @@ public class ItemToBuyTestSuite {
 
 
         //Clean-up
-        itemToBuyRepository.deleteById(itemToBuyLong);
         exchangePortalRepository.deleteById(exchangePortalLong);
         walletItemRepository.deleteById(walletItemLong);
         walletRepository.deleteById(walletLong);
     }
-
-    @Test
-    public void shouldCheckIfItemToBuyExists() {
-    }
-
-
 }
