@@ -3,7 +3,9 @@ package com.cryptoclient.service;
 import com.cryptoclient.domain.Currency;
 import com.cryptoclient.domain.Wallet;
 import com.cryptoclient.domain.WalletItem;
+import com.cryptoclient.repository.WalletItemRepository;
 import com.cryptoclient.repository.WalletRepository;
+import com.cryptoclient.service.interfaces.WalletItemService;
 import com.cryptoclient.service.interfaces.WalletService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,6 +30,12 @@ public class WalletTestSuite {
 
     @Autowired
     private WalletRepository walletRepository;
+
+    @Autowired
+    private WalletItemService walletItemService;
+
+    @Autowired
+    private WalletItemRepository walletItemRepository;
 
     LocalDateTime now = LocalDateTime.now();
     String various = now.toString();
@@ -149,17 +157,19 @@ public class WalletTestSuite {
     public void shouldCheckHowManyUsdWalletHas() {
         //Given
         Wallet wallet = new Wallet(various + "10");
-        List<WalletItem> walletItemList = new ArrayList<>();
-        WalletItem walletItem = new WalletItem(wallet, Currency.USD, 200.0);
-        walletItemList.add(walletItem);
-        wallet.setWalletItemList(walletItemList);
+        walletService.createWallet(wallet);
+
+        WalletItem walletItem = new WalletItem(wallet,  Currency.USD,200.0);
+        walletItemService.save(walletItem);
+        wallet.addWalletItem(walletItem);
+
         //When
-        walletService.save(wallet);
         Double usdQuantity = walletService.checkHowManyUsdWalletHas(wallet.getId());
         //Then
         assertEquals(usdQuantity, 200.0, 0.01);
         //Cleanup
-        walletRepository.deleteById(wallet.getId());
+//        walletItemRepository.deleteById(walletItem.getId());
+//        walletRepository.deleteById(wallet.getId());
     }
 
 }

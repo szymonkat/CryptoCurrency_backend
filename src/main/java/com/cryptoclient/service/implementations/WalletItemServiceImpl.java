@@ -26,7 +26,7 @@ public class WalletItemServiceImpl implements WalletItemService {
             walletItemDraft.setQuantity(newQuantity);
             return save(walletItemDraft);
         } else {
-           return walletItemRepository.save(walletItem);
+           return save(walletItem);
         }
     }
 
