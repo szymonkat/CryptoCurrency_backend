@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-@Transactional
+//@Transactional
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class ItemToBuyTestSuite {
@@ -147,27 +147,14 @@ public class ItemToBuyTestSuite {
         itemToBuyService.finalizeItemToBuy(itemToBuyLong, walletLong);
 
         //Then
-        List<WalletItem> itemsList = walletItemService.getWalletItems().stream()
-                .filter(n -> n.getWallet().getId() == walletLong)
-                .collect(Collectors.toList());
-
-        Optional<WalletItem> walletItemUsd = itemsList.stream()
-                .findAny()
-                .filter(n -> n.getCurrency() == Currency.USD);
-
         WalletItem walletItemXmr = walletItemService.returnCurrencyWalletItem(walletLong, Currency.XMR);
 
-        System.out.println("TEST");
-        System.out.println(itemsList);
-        System.out.println(walletItemUsd);
-        System.out.println(walletItemXmr);
-        System.out.println("TEST");
-//        assertEquals(998000.0, walletItemUsd.get().getQuantity(), 0.001);
-//        assertEquals(200.0, walletItemXmr.get().getQuantity(), 0.001);
+        assertEquals(200.0, walletItemXmr.getQuantity(), 0.001);
 
         //Clean-up
         exchangePortalRepository.deleteById(exchangePortalLong);
         walletItemRepository.deleteById(walletItemLong);
+        walletItemRepository.deleteById(walletItemXmr.getId());
         walletRepository.deleteById(walletLong);
     }
 

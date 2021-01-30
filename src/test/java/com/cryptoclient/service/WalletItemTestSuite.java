@@ -185,11 +185,21 @@ public class WalletItemTestSuite {
 
     @Test
     public void testingWalletItem() {
-
-/*        walletService.createWallet(wallet);
+        //Given
+        walletService.createWallet(wallet);
         Long walletId = wallet.getId();
         WalletItem walletItem = new WalletItem(wallet, Currency.USD, 300.0);
-        walletService.addWalletItem(walletItem, walletId);*/
+        walletItemService.postWalletItem(walletItem);
+
+        //When
+
+
+
+        //Then
+
+        //CleanUp
+        walletItemRepository.deleteById(walletItem.getId());
+        walletRepository.deleteById(wallet.getId());
 
     }
 

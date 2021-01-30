@@ -21,7 +21,7 @@ public class WalletItem {
     private Long id;
 
     @NotNull
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne//(cascade = CascadeType.PERSIST)
     @JoinColumn(name="wallet_id")
     private Wallet wallet;
 
