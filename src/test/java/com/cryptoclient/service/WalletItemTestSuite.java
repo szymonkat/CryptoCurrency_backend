@@ -23,7 +23,7 @@ import static org.junit.Assert.assertFalse;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-@Transactional
+//@Transactional
 public class WalletItemTestSuite {
 
     @Autowired
@@ -181,6 +181,15 @@ public class WalletItemTestSuite {
     @Test
     public void shouldReturnCurrencyWalletItem() {
 
+    }
+
+    @Test
+    public void testingWalletItem() {
+
+/*        walletService.createWallet(wallet);
+        Long walletId = wallet.getId();
+        WalletItem walletItem = new WalletItem(wallet, Currency.USD, 300.0);
+        walletService.addWalletItem(walletItem, walletId);*/
 
     }
 
