@@ -77,7 +77,6 @@ public class ItemToBuyServiceImpl implements ItemToBuyService {
                 walletItemService.save(addWalletItem);
                 //3) Delete itemToBuy
                 deleteItemToBuy(itemToBuyId);
-                // Check that Exchange Portal is still displayed
             } else { // Error handling
                 if (!checkIfTimeIsNotOlderThen20Min(itemToBuy.getExchangePortal()))
                     throw new ExchangePortalPriceTooOldException("Your exchange Portal price might be too old (20 min validation)");

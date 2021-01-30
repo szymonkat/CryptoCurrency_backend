@@ -19,6 +19,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -142,18 +144,46 @@ public class ItemToBuyTestSuite {
         wallet.addWalletItem(walletItem);
 
         //When
-        System.out.println(itemToBuyService.findItemToBuyById(itemToBuyLong));
         itemToBuyService.finalizeItemToBuy(itemToBuyLong, walletLong);
 
         //Then
-        System.out.println(walletLong);
-        System.out.println(wallet.getWalletItemList());
-        System.out.println(walletItem.toString());
+        List<WalletItem> itemsList = walletItemService.getWalletItems().stream()
+                .filter(n -> n.getWallet().getId() == walletLong)
+                .collect(Collectors.toList());
 
+        Optional<WalletItem> walletItemUsd = itemsList.stream()
+                .findAny()
+                .filter(n -> n.getCurrency() == Currency.USD);
+
+        WalletItem walletItemXmr = walletItemService.returnCurrencyWalletItem(walletLong, Currency.XMR);
+
+        System.out.println("TEST");
+        System.out.println(itemsList);
+        System.out.println(walletItemUsd);
+        System.out.println(walletItemXmr);
+        System.out.println("TEST");
+//        assertEquals(998000.0, walletItemUsd.get().getQuantity(), 0.001);
+//        assertEquals(200.0, walletItemXmr.get().getQuantity(), 0.001);
 
         //Clean-up
         exchangePortalRepository.deleteById(exchangePortalLong);
         walletItemRepository.deleteById(walletItemLong);
         walletRepository.deleteById(walletLong);
+    }
+
+    @Test
+    public void shouldDeleteItemToBuy() {
+        /*//Given
+        exchangePortalService.save(exchangePortal);
+        Long exchangePortalLong = exchangePortal.getId();
+        //When
+        itemToBuyService.save(itemToBuy);
+        Long itemToBuyLong = itemToBuy.getId();
+        //Then
+        assertEquals(itemToBuy.getExchangePortal().getRatio(), 10.0, 0.0001);
+        assertEquals(itemToBuy.getQuantityToBuy(), 200.0, 0.0001);
+        //Clean-up
+        itemToBuyRepository.deleteById(itemToBuyLong);
+        exchangePortalRepository.deleteById(exchangePortalLong);*/
     }
 }

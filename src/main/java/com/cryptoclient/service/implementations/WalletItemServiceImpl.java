@@ -30,12 +30,6 @@ public class WalletItemServiceImpl implements WalletItemService {
         }
     }
 
-/*    public void updateWallet(WalletItem walletItem) {
-        Wallet updateWallet = walletService.findWalletById(walletItem.getWallet().getId());
-        updateWallet.addWalletItem(walletItem);
-        walletService.save(updateWallet);
-    }*/
-
     @Override
     public WalletItem updateWalletItem(WalletItem walletItem) throws NotFoundException {
         WalletItem returnedWalletItem = findWalletItemById(walletItem.getId());
