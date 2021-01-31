@@ -33,14 +33,6 @@ public class Wallet {
             cascade = CascadeType.ALL)
     private List<WalletItem> walletItemList = new ArrayList<>();
 
-    public void addWalletItem(WalletItem walletItem) {
-        walletItemList.add(walletItem);
-    }
-
-    public void removeWalletItem(WalletItem walletItem) {
-        walletItemList.remove(walletItem);
-    }
-
     public Wallet(String name) {
         this.name = name;
     }

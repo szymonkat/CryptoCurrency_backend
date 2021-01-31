@@ -24,6 +24,9 @@ public class WalletMapper {
     }
 
     public WalletDto mapToWalletDto(Wallet wallet) {
+        if (wallet.getId() == null) {
+            return new WalletDto(wallet.getName(), new ArrayList<>());
+        } else
         return new WalletDto(wallet.getId(), wallet.getName(), walletItemMapper.mapToWalletItemDtoList(wallet.getWalletItemList()));
     }
 

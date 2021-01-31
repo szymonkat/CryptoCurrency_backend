@@ -36,9 +36,7 @@ public class WalletItemMapper {
     }
 
     public List<WalletItemDto> mapToWalletItemDtoList(List<WalletItem> walletItemList) {
-        if (walletItemList.isEmpty()) return new ArrayList<>();
-        else
-            return walletItemList.stream()
+       return walletItemList.stream()
                 .map(this ::mapToWalletItemDto)
                 .collect(Collectors.toList());
     }

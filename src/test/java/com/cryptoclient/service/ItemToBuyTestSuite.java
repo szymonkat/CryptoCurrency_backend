@@ -137,8 +137,6 @@ public class ItemToBuyTestSuite {
         walletItemService.postWalletItem(walletItem);
         Long walletItemLong = walletItem.getId();
 
-        wallet.addWalletItem(walletItem);
-
         //When
         itemToBuyService.finalizeItemToBuy(itemToBuyLong, walletLong);
 
