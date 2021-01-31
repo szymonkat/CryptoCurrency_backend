@@ -12,7 +12,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -23,7 +22,6 @@ import static org.junit.Assert.assertFalse;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-//@Transactional
 public class WalletItemTestSuite {
 
     @Autowired
@@ -165,13 +163,13 @@ public class WalletItemTestSuite {
         Long walletId = wallet.getId();
         WalletItem walletItem = new WalletItem(wallet, Currency.USD, 300.0);
         walletItemService.save(walletItem);
-        wallet.addWalletItem(walletItem);
 
         //When
         WalletItem walletItemUsd = walletItemService.returnUsdWalletItem(walletId);
 
         //Then
-        System.out.println(walletItemUsd);
+        assertEquals(Currency.USD, walletItemUsd.getCurrency());
+        assertEquals(300.0, walletItemUsd.getQuantity(), 0.001);
 
         //CleanUp
         walletItemRepository.deleteById(walletItem.getId());
@@ -180,27 +178,22 @@ public class WalletItemTestSuite {
 
     @Test
     public void shouldReturnCurrencyWalletItem() {
-
-    }
-
-    @Test
-    public void testingWalletItem() {
         //Given
         walletService.createWallet(wallet);
         Long walletId = wallet.getId();
-        WalletItem walletItem = new WalletItem(wallet, Currency.USD, 300.0);
-        walletItemService.postWalletItem(walletItem);
+        WalletItem walletItem = new WalletItem(wallet, Currency.BTC, 200.0);
+        walletItemService.save(walletItem);
 
         //When
-
-
+        WalletItem walletItemBtc = walletItemService.returnCurrencyWalletItem(walletId, Currency.BTC);
 
         //Then
+        assertEquals(Currency.BTC, walletItemBtc.getCurrency());
+        assertEquals(200.0, walletItemBtc.getQuantity(), 0.001);
 
         //CleanUp
         walletItemRepository.deleteById(walletItem.getId());
         walletRepository.deleteById(wallet.getId());
-
     }
 
 }

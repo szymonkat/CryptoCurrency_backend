@@ -14,17 +14,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-//@Transactional
+import static org.junit.Assert.*;
+
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class ItemToBuyTestSuite {
@@ -160,17 +156,16 @@ public class ItemToBuyTestSuite {
 
     @Test
     public void shouldDeleteItemToBuy() {
-        /*//Given
+        //Given
         exchangePortalService.save(exchangePortal);
         Long exchangePortalLong = exchangePortal.getId();
-        //When
         itemToBuyService.save(itemToBuy);
         Long itemToBuyLong = itemToBuy.getId();
+        //When
+        itemToBuyService.deleteItemToBuy(itemToBuyLong);
         //Then
-        assertEquals(itemToBuy.getExchangePortal().getRatio(), 10.0, 0.0001);
-        assertEquals(itemToBuy.getQuantityToBuy(), 200.0, 0.0001);
+        assertFalse(itemToBuyRepository.existsById(itemToBuyLong));
         //Clean-up
-        itemToBuyRepository.deleteById(itemToBuyLong);
-        exchangePortalRepository.deleteById(exchangePortalLong);*/
+        exchangePortalRepository.deleteById(exchangePortalLong);
     }
 }
