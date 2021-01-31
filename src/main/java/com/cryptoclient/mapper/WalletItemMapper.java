@@ -6,6 +6,7 @@ import com.cryptoclient.service.interfaces.WalletService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,7 +36,9 @@ public class WalletItemMapper {
     }
 
     public List<WalletItemDto> mapToWalletItemDtoList(List<WalletItem> walletItemList) {
-        return walletItemList.stream()
+        if (walletItemList.isEmpty()) return new ArrayList<>();
+        else
+            return walletItemList.stream()
                 .map(this ::mapToWalletItemDto)
                 .collect(Collectors.toList());
     }
