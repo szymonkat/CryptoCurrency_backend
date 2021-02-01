@@ -14,6 +14,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.mockito.Mockito.when;
 
@@ -59,17 +61,51 @@ public class ItemToBuyMapperTestSuite {
     @Test
     public void shouldMapToItemToBuyList() {
         //Given
-        ItemToBuyDto itemToBuyDto = new ItemToBuyDto(1L, 2L, 200.0);
-        ItemToBuyDto itemToBuyDto = new ItemToBuyDto(2L, 2L, 200.0);
-        ExchangePortal exchangePortal = new ExchangePortal(2L, "coinlayer", Currency.BTC, Currency.USD,
+        ItemToBuyDto itemToBuyDto1 = new ItemToBuyDto(1L, 2L, 200.0);
+        ItemToBuyDto itemToBuyDto2 = new ItemToBuyDto(3L, 4L, 500.0);
+        ExchangePortal exchangePortal1 = new ExchangePortal(2L, "coinlayer", Currency.BTC, Currency.USD,
                 350.0, LocalDateTime.of(2021, 12, 1, 7, 0));
-        when(exchangePortalService.findExchangePortalById(2L)).thenReturn(exchangePortal);
+        ExchangePortal exchangePortal2 = new ExchangePortal(4L, "coinlayer", Currency.BTC, Currency.USD,
+                350.0, LocalDateTime.of(2021, 12, 1, 7, 0));
+        when(exchangePortalService.findExchangePortalById(2L)).thenReturn(exchangePortal1);
+        when(exchangePortalService.findExchangePortalById(4L)).thenReturn(exchangePortal2);
+
+        List<ItemToBuyDto> itemToBuyDtoList = new ArrayList<>();
+        itemToBuyDtoList.add(itemToBuyDto1);
+        itemToBuyDtoList.add(itemToBuyDto2);
         //When
-        ItemToBuy itemToBuy = itemToBuyMapper.mapToItemToBuy(itemToBuyDto);
+        List<ItemToBuy> itemToBuyList = itemToBuyMapper.mapToItemToBuyList(itemToBuyDtoList);
         //Then
-        Assert.assertEquals(itemToBuy.getId(), Long.valueOf(1));
-        Assert.assertEquals(itemToBuy.getExchangePortal().getId(), Long.valueOf(2));
-        Assert.assertEquals(itemToBuy.getQuantityToBuy(), 200.0, 0.001);
+        Assert.assertEquals(itemToBuyList.get(0).getId(), Long.valueOf(1));
+        Assert.assertEquals(itemToBuyList.get(0).getExchangePortal().getId(), Long.valueOf(2));
+        Assert.assertEquals(itemToBuyList.get(0).getQuantityToBuy(), 200.0, 0.001);
+        Assert.assertEquals(itemToBuyList.get(1).getId(), Long.valueOf(3));
+        Assert.assertEquals(itemToBuyList.get(1).getExchangePortal().getId(), Long.valueOf(4));
+        Assert.assertEquals(itemToBuyList.get(1).getQuantityToBuy(), 500.0, 0.001);
+    }
+
+    @Test
+    public void shouldMapToItemToBuyDtoList() {
+        //Given
+        ExchangePortal exchangePortal1 = new ExchangePortal(2L, "coinlayer", Currency.BTC, Currency.USD,
+                350.0, LocalDateTime.of(2021, 12, 1, 7, 0));
+        ExchangePortal exchangePortal2 = new ExchangePortal(4L, "coinlayer", Currency.BTC, Currency.USD,
+                350.0, LocalDateTime.of(2021, 12, 1, 7, 0));
+        ItemToBuy itemToBuy1 = new ItemToBuy(1L, exchangePortal1, 200.0);
+        ItemToBuy itemToBuy2 = new ItemToBuy(3L, exchangePortal2, 500.0);
+
+        List<ItemToBuy> itemToBuyList = new ArrayList<>();
+        itemToBuyList.add(itemToBuy1);
+        itemToBuyList.add(itemToBuy2);
+        //When
+        List<ItemToBuyDto> itemToBuyDtoList = itemToBuyMapper.mapToItemToBuyDtoList(itemToBuyList);
+        //Then
+        Assert.assertEquals(itemToBuyDtoList.get(0).getId(), Long.valueOf(1));
+        Assert.assertEquals(itemToBuyDtoList.get(0).getExchangePortalId(), Long.valueOf(2));
+        Assert.assertEquals(itemToBuyDtoList.get(0).getQuantityToBuy(), 200.0, 0.001);
+        Assert.assertEquals(itemToBuyDtoList.get(1).getId(), Long.valueOf(3));
+        Assert.assertEquals(itemToBuyDtoList.get(1).getExchangePortalId(), Long.valueOf(4));
+        Assert.assertEquals(itemToBuyDtoList.get(1).getQuantityToBuy(), 500.0, 0.001);
     }
 
 }
