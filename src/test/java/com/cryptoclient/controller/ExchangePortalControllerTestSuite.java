@@ -88,4 +88,14 @@ public class ExchangePortalControllerTestSuite {
                 .andExpect(status().isOk())
                 .andDo(MockMvcResultHandlers.print());
     }
+
+    @Test
+    public void getExchangePortalByIdTest() throws Exception {
+
+    }
+
+    @Test
+    public void PostExchangePortalTest() throws Exception {
+
+    }
 }
