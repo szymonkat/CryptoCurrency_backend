@@ -4,7 +4,7 @@ import com.cryptoclient.domain.Currency;
 import com.cryptoclient.dto.ExchangePortalDto;
 import com.cryptoclient.mapper.ExchangePortalMapper;
 import com.cryptoclient.service.interfaces.AnalyzerService;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;

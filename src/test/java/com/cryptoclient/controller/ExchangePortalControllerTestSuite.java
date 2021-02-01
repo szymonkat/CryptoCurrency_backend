@@ -8,7 +8,7 @@ import com.cryptoclient.domain.ExchangePortal;
 import com.cryptoclient.dto.ExchangePortalDto;
 import com.cryptoclient.mapper.ExchangePortalMapper;
 import com.cryptoclient.service.interfaces.ExchangePortalService;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -25,6 +25,7 @@ import java.util.List;
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -62,7 +63,6 @@ public class ExchangePortalControllerTestSuite {
                 .andExpect(jsonPath("$", hasSize(0)));
     }
 
-    // Not working
 
     @Test
     public void getExchangePortalTest() throws Exception {
@@ -91,11 +91,51 @@ public class ExchangePortalControllerTestSuite {
 
     @Test
     public void getExchangePortalByIdTest() throws Exception {
+        //Given
+        ExchangePortal exchangePortal = new ExchangePortal(1L, "nomics", Currency.XMR,
+                Currency.USD,160.00, LocalDateTime.of(2020, 12, 20, 20, 50));
+        ExchangePortalDto exchangePortalDto = new ExchangePortalDto(1L, "nomics", Currency.XMR,
+                Currency.USD,160.00, LocalDateTime.of(2020, 12, 20, 20, 50));
+        Currency currency = Currency.XMR;
+        String serviceName = "nomics";
+        String currencyString = "XMR";
 
+        when(apiService.createExchangePortal(currency)).thenReturn(exchangePortal);
+        when(serviceFactory.createService(serviceName)).thenReturn(apiService);
+        when(exchangePortalMapper.mapToExchangePortalDto(apiService.createExchangePortal(currency)))
+                .thenReturn(exchangePortalDto);
+
+        //When & Then
+        mockMvc.perform(get("/v1/exchange").contentType(MediaType.APPLICATION_JSON)
+                .characterEncoding("UTF-8")
+                .param("currency", currencyString)
+                .param("serviceName", serviceName))
+                .andExpect(status().isOk())
+                .andDo(MockMvcResultHandlers.print());
     }
 
     @Test
-    public void PostExchangePortalTest() throws Exception {
+    public void postExchangePortalTest() throws Exception {
+        //Given
+        ExchangePortal exchangePortal = new ExchangePortal(1L, "nomics", Currency.XMR,
+                Currency.USD,160.00, LocalDateTime.of(2020, 12, 20, 20, 50));
+        ExchangePortalDto exchangePortalDto = new ExchangePortalDto(1L, "nomics", Currency.XMR,
+                Currency.USD,160.00, LocalDateTime.of(2020, 12, 20, 20, 50));
+        Currency currency = Currency.XMR;
+        String serviceName = "nomics";
+        String currencyString = "XMR";
 
+        when(apiService.createExchangePortal(currency)).thenReturn(exchangePortal);
+        when(serviceFactory.createService(serviceName)).thenReturn(apiService);
+        when(exchangePortalMapper.mapToExchangePortalDto(apiService.createExchangePortal(currency)))
+                .thenReturn(exchangePortalDto);
+
+        //When & Then
+        mockMvc.perform(post("/v1/exchange").contentType(MediaType.APPLICATION_JSON)
+                .characterEncoding("UTF-8")
+                .param("currency", currencyString)
+                .param("serviceName", serviceName))
+                .andExpect(status().isOk())
+                .andDo(MockMvcResultHandlers.print());
     }
 }
