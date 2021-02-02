@@ -35,21 +35,21 @@ public class ExchangePortalMapper {
                     exchangePortal.getCurrencyToPay(), exchangePortal.getRatio(), exchangePortal.getTime());
         } else {
             return new ExchangePortalDto(exchangePortal.getId(), exchangePortal.getProvider(),
-                exchangePortal.getCurrencyToBuy(),
-                exchangePortal.getCurrencyToPay(), exchangePortal.getRatio(), exchangePortal.getTime(),
+                    exchangePortal.getCurrencyToBuy(),
+                    exchangePortal.getCurrencyToPay(), exchangePortal.getRatio(), exchangePortal.getTime(),
                     exchangePortal.getItemToBuy().getId());
         }
     }
 
     public List<ExchangePortalDto> mapToExchangePortalDtoList(List<ExchangePortal> exchangePortalList) {
         return exchangePortalList.stream()
-                .map(this ::mapToExchangePortalDto)
+                .map(this::mapToExchangePortalDto)
                 .collect(Collectors.toList());
     }
 
     public List<ExchangePortal> mapToExchangePortalList(List<ExchangePortalDto> exchangePortalDtos) {
         return exchangePortalDtos.stream()
-                .map(this ::mapToExchangePortal)
+                .map(this::mapToExchangePortal)
                 .collect(Collectors.toList());
     }
 

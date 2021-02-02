@@ -63,7 +63,7 @@ public class ExchangePortalMapperTestSuite {
         List<ExchangePortalDto> exchangePortalDtoList = new ArrayList<>();
         exchangePortalDtoList.add(exchangePortalDto1);
         exchangePortalDtoList.add(exchangePortalDto2);
-        
+
         //When
         List<ExchangePortal> exchangePortalList = exchangePortalMapper.mapToExchangePortalList(exchangePortalDtoList);
         //Then
@@ -108,6 +108,6 @@ public class ExchangePortalMapperTestSuite {
         Assert.assertEquals(exchangePortalDtoList.get(1).getRatio(), 350.0, 0.001);
         Assert.assertEquals(exchangePortalDtoList.get(1).getTime(), LocalDateTime.of(2021, 12, 1, 7, 0));
     }
-    
+
 
 }

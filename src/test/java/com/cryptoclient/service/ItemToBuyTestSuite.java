@@ -25,35 +25,25 @@ import static org.junit.Assert.*;
 @SpringBootTest
 public class ItemToBuyTestSuite {
 
+    ExchangePortal exchangePortal = new ExchangePortal("nomics", Currency.XMR, Currency.USD,
+            10.0, LocalDateTime.of(2021, 12, 2, 6, 23));
+    ItemToBuy itemToBuy = new ItemToBuy(exchangePortal, 200.0);
     @Autowired
     private ItemToBuyService itemToBuyService;
-
     @Autowired
     private ExchangePortalService exchangePortalService;
-
     @Autowired
     private ItemToBuyRepository itemToBuyRepository;
-
     @Autowired
     private ExchangePortalRepository exchangePortalRepository;
-
     @Autowired
     private WalletService walletService;
-
     @Autowired
     private WalletItemService walletItemService;
-
     @Autowired
     private WalletRepository walletRepository;
-
     @Autowired
     private WalletItemRepository walletItemRepository;
-
-
-    ExchangePortal exchangePortal = new ExchangePortal("nomics", Currency.XMR, Currency.USD,
-            10.0,  LocalDateTime.of(2021, 12, 2, 6, 23));
-
-    ItemToBuy itemToBuy = new ItemToBuy(exchangePortal, 200.0);
 
     @Test
     public void shouldCreateItemToBuy() {

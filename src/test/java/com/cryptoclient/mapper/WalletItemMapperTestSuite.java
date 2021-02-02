@@ -27,14 +27,14 @@ public class WalletItemMapperTestSuite {
 
     @Mock
     private WalletService walletService;
-    
+
     @Test
     public void shouldMapToWalletItem() {
         //Given
         WalletItemDto walletItemDto1 = new WalletItemDto(13L, 5L, Currency.BTC, 300.0);
-        
+
         Wallet wallet5 = new Wallet(5L, "wallet5", null);
-    
+
         when(walletService.findWalletById(5L)).thenReturn(wallet5);
 
         //When
@@ -62,7 +62,7 @@ public class WalletItemMapperTestSuite {
         Assert.assertEquals(walletItemDto.getCurrency(), Currency.BTC);
         Assert.assertEquals(walletItemDto.getQuantity(), 300.0, 0.001);
     }
-    
+
     @Test
     public void shouldMapToWalletItemList() {
         //Given
@@ -91,7 +91,7 @@ public class WalletItemMapperTestSuite {
         Assert.assertEquals(walletItemList.get(1).getWallet().getId(), Long.valueOf(6));
         Assert.assertEquals(walletItemList.get(1).getCurrency(), Currency.USD);
         Assert.assertEquals(walletItemList.get(1).getQuantity(), 300.0, 0.001);
-        
+
     }
 
     @Test
@@ -107,7 +107,7 @@ public class WalletItemMapperTestSuite {
         walletItemList.add(walletItem1);
         walletItemList.add(walletItem2);
 
-        
+
         //When
         List<WalletItemDto> walletItemDtoList = walletItemMapper.mapToWalletItemDtoList(walletItemList);
 

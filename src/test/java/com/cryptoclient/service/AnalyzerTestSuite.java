@@ -19,27 +19,20 @@ import static org.junit.Assert.assertEquals;
 @SpringBootTest
 public class AnalyzerTestSuite {
 
+    ExchangePortal exchangePortalNewest = new ExchangePortal("nomics", Currency.XMR, Currency.USD,
+            300.0, LocalDateTime.of(2100, 12, 2, 6, 23));
+    ExchangePortal exchangePortalOldest = new ExchangePortal("nomics", Currency.XMR, Currency.USD,
+            300.0, LocalDateTime.of(1800, 12, 2, 6, 23));
+    ExchangePortal exchangePortalMax = new ExchangePortal("nomics", Currency.XMR, Currency.USD,
+            10000000000.0, LocalDateTime.of(2021, 12, 2, 6, 23));
+    ExchangePortal exchangePortalMin = new ExchangePortal("nomics", Currency.XMR, Currency.USD,
+            0.0001, LocalDateTime.of(2021, 12, 2, 6, 23));
     @Autowired
     private AnalyzerService analyzerService;
-
     @Autowired
     private ExchangePortalService exchangePortalService;
-
     @Autowired
     private ExchangePortalRepository exchangePortalRepository;
-
-    ExchangePortal exchangePortalNewest = new ExchangePortal("nomics", Currency.XMR, Currency.USD,
-            300.0,  LocalDateTime.of(2100, 12, 2, 6, 23));
-
-    ExchangePortal exchangePortalOldest = new ExchangePortal("nomics", Currency.XMR, Currency.USD,
-            300.0,  LocalDateTime.of(1800, 12, 2, 6, 23));
-
-    ExchangePortal exchangePortalMax = new ExchangePortal("nomics", Currency.XMR, Currency.USD,
-            10000000000.0,  LocalDateTime.of(2021, 12, 2, 6, 23));
-
-    ExchangePortal exchangePortalMin = new ExchangePortal("nomics", Currency.XMR, Currency.USD,
-            0.0001,  LocalDateTime.of(2021, 12, 2, 6, 23));
-
 
     @Test
     public void shouldReturnMinRatio() {

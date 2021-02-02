@@ -28,7 +28,7 @@ public class ItemToBuyMapper {
     }
 
     public ItemToBuyDto mapToItemToBuyDto(ItemToBuy itemToBuy) {
-        if (itemToBuy.getId() == null){
+        if (itemToBuy.getId() == null) {
             return new ItemToBuyDto(
                     itemToBuy.getExchangePortal().getId(),
                     itemToBuy.getQuantityToBuy());
@@ -41,13 +41,13 @@ public class ItemToBuyMapper {
 
     public List<ItemToBuyDto> mapToItemToBuyDtoList(List<ItemToBuy> itemToBuyList) {
         return itemToBuyList.stream()
-                .map(this ::mapToItemToBuyDto)
+                .map(this::mapToItemToBuyDto)
                 .collect(Collectors.toList());
     }
 
     public List<ItemToBuy> mapToItemToBuyList(List<ItemToBuyDto> itemToBuyDtoList) {
         return itemToBuyDtoList.stream()
-                .map(this ::mapToItemToBuy)
+                .map(this::mapToItemToBuy)
                 .collect(Collectors.toList());
     }
 

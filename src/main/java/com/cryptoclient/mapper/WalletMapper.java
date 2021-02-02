@@ -18,7 +18,7 @@ public class WalletMapper {
     public Wallet mapToWallet(WalletDto walletDto) {
         if (walletDto.getId() == null) {
             return new Wallet(walletDto.getName(), new ArrayList<>());
-        } else  {
+        } else {
             return new Wallet(walletDto.getId(), walletDto.getName(), walletItemMapper.mapToWalletItemList(walletDto.getWalletItemList()));
         }
     }
@@ -27,18 +27,18 @@ public class WalletMapper {
         if (wallet.getId() == null) {
             return new WalletDto(wallet.getName(), new ArrayList<>());
         } else
-        return new WalletDto(wallet.getId(), wallet.getName(), walletItemMapper.mapToWalletItemDtoList(wallet.getWalletItemList()));
+            return new WalletDto(wallet.getId(), wallet.getName(), walletItemMapper.mapToWalletItemDtoList(wallet.getWalletItemList()));
     }
 
     public List<Wallet> mapToWalletList(List<WalletDto> walletDtoList) {
         return walletDtoList.stream()
-                .map(this ::mapToWallet)
+                .map(this::mapToWallet)
                 .collect(Collectors.toList());
     }
 
     public List<WalletDto> mapToWalletDtoList(List<Wallet> walletList) {
         return walletList.stream()
-                .map(this ::mapToWalletDto)
+                .map(this::mapToWalletDto)
                 .collect(Collectors.toList());
     }
 }

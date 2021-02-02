@@ -23,20 +23,16 @@ import static org.junit.Assert.*;
 @SpringBootTest
 public class ExchangePortalTestSuite {
 
+    ExchangePortal exchangePortal = new ExchangePortal("nomics", Currency.XMR, Currency.USD,
+            10.0, LocalDateTime.of(2021, 12, 2, 6, 23));
+    ExchangePortal exchangePortal1 = new ExchangePortal("nomics", Currency.BTC, Currency.USD,
+            10.0, LocalDateTime.of(2021, 12, 2, 6, 23));
+    ExchangePortal exchangePortal2 = new ExchangePortal("nomics", Currency.BTC, Currency.USD,
+            10.0, LocalDateTime.of(2021, 12, 2, 6, 23));
     @Autowired
     private ExchangePortalService exchangePortalService;
-
     @Autowired
     private ExchangePortalRepository exchangePortalRepository;
-
-    ExchangePortal exchangePortal = new ExchangePortal("nomics", Currency.XMR, Currency.USD,
-            10.0,  LocalDateTime.of(2021, 12, 2, 6, 23));
-
-    ExchangePortal exchangePortal1 = new ExchangePortal("nomics", Currency.BTC, Currency.USD,
-            10.0,  LocalDateTime.of(2021, 12, 2, 6, 23));
-
-    ExchangePortal exchangePortal2 = new ExchangePortal("nomics", Currency.BTC, Currency.USD,
-            10.0,  LocalDateTime.of(2021, 12, 2, 6, 23));
 
     @Test
     public void shouldFindExchangePortalById() {

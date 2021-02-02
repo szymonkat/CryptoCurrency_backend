@@ -19,10 +19,10 @@ public class AnalyzerServiceImpl implements AnalyzerService {
     public ExchangePortal findMinRatio(Currency currency) throws NoExchangePortalFoundException {
         List<ExchangePortal> exchangePortals = exchangePortalService.getExchangePortalsWithCurrency(currency);
 
-            ExchangePortal minExchangePortal = exchangePortals.stream()
-                    .min(Comparator.comparing(ExchangePortal::getRatio))
-                    .orElseThrow(()
-                            -> new NoExchangePortalFoundException("Exchange portal not found"));
+        ExchangePortal minExchangePortal = exchangePortals.stream()
+                .min(Comparator.comparing(ExchangePortal::getRatio))
+                .orElseThrow(()
+                        -> new NoExchangePortalFoundException("Exchange portal not found"));
         return minExchangePortal;
     }
 
@@ -49,7 +49,7 @@ public class AnalyzerServiceImpl implements AnalyzerService {
     }
 
     @Override
-    public ExchangePortal findNewestRatio(Currency currency) throws  NoExchangePortalFoundException{
+    public ExchangePortal findNewestRatio(Currency currency) throws NoExchangePortalFoundException {
         List<ExchangePortal> exchangePortals = exchangePortalService.getExchangePortalsWithCurrency(currency);
 
         ExchangePortal minExchangePortal = exchangePortals.stream()

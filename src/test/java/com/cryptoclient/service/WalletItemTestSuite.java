@@ -24,22 +24,17 @@ import static org.junit.Assert.assertFalse;
 @SpringBootTest
 public class WalletItemTestSuite {
 
-    @Autowired
-    private WalletItemService walletItemService;
-
-    @Autowired
-    private WalletService walletService;
-
-    @Autowired
-    private WalletItemRepository walletItemRepository;
-
-    @Autowired
-    private WalletRepository walletRepository;
-
     LocalDateTime now = LocalDateTime.now();
     String various = now.toString();
     Wallet wallet = new Wallet(various + "1");
-
+    @Autowired
+    private WalletItemService walletItemService;
+    @Autowired
+    private WalletService walletService;
+    @Autowired
+    private WalletItemRepository walletItemRepository;
+    @Autowired
+    private WalletRepository walletRepository;
 
     @Test
     public void shouldPostWalletItem() {
@@ -113,7 +108,7 @@ public class WalletItemTestSuite {
         walletItemList = walletItemService.getWalletItems();
 
         //Then
-       assertFalse(walletItemList.isEmpty());
+        assertFalse(walletItemList.isEmpty());
 
         //CleanUp
         walletItemRepository.deleteById(walletItem.getId());

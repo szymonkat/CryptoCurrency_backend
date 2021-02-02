@@ -35,10 +35,4 @@ public class NomicsClient {
         }
         return new ArrayList<>();
     }
-
-
-
-
-
-
 }

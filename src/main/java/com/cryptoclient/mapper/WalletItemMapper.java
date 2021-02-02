@@ -35,14 +35,14 @@ public class WalletItemMapper {
     }
 
     public List<WalletItemDto> mapToWalletItemDtoList(List<WalletItem> walletItemList) {
-       return walletItemList.stream()
-                .map(this ::mapToWalletItemDto)
+        return walletItemList.stream()
+                .map(this::mapToWalletItemDto)
                 .collect(Collectors.toList());
     }
 
     public List<WalletItem> mapToWalletItemList(List<WalletItemDto> walletItemDtoList) {
         return walletItemDtoList.stream()
-                .map(this ::mapToWalletItem)
+                .map(this::mapToWalletItem)
                 .collect(Collectors.toList());
     }
 }

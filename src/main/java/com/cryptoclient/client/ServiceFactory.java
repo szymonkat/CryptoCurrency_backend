@@ -13,18 +13,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class ServiceFactory {
 
+    public static final String COIN_LAYER = "coinlayer";
+    public static final String NOMICS = "nomics";
     @Autowired
     private CoinLayerConfig coinLayerConfig;
     @Autowired
     private CoinLayerClient coinLayerClient;
-
     @Autowired
     private NomicsConfig nomicsConfig;
     @Autowired
     private NomicsClient nomicsClient;
-
-    public static final String COIN_LAYER = "coinlayer";
-    public static final String NOMICS = "nomics";
 
     public ApiService createService(final String serviceName) throws NotFoundException {
         switch (serviceName) {
@@ -33,7 +31,7 @@ public class ServiceFactory {
             case NOMICS:
                 return new NomicsService(nomicsClient, nomicsConfig);
             default:
-                throw new NotFoundException("Please type \'coinlayer\' or \'nomics\'," +
+                throw new NotFoundException("Please type 'coinlayer' or 'nomics'," +
                         " otherwise Your request cannot be " +
                         "processed");
         }

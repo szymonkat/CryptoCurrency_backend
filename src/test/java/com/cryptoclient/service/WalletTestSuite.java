@@ -23,14 +23,12 @@ import static org.junit.Assert.assertTrue;
 @SpringBootTest
 public class WalletTestSuite {
 
-    @Autowired
-    private WalletService walletService;
-
-    @Autowired
-    private WalletRepository walletRepository;
-
     LocalDateTime now = LocalDateTime.now();
     String various = now.toString();
+    @Autowired
+    private WalletService walletService;
+    @Autowired
+    private WalletRepository walletRepository;
 
     @Test
     public void shouldFindWalletById() {

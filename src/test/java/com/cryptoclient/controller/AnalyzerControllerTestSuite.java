@@ -39,7 +39,7 @@ public class AnalyzerControllerTestSuite {
     public void getMinValueTest() throws Exception {
         //Given
         ExchangePortalDto exchangePortalDto = new ExchangePortalDto(1L, "nomics", Currency.XMR,
-                Currency.USD,160.00, LocalDateTime.of(2020, 12, 20, 20, 50));
+                Currency.USD, 160.00, LocalDateTime.of(2020, 12, 20, 20, 50));
 
         when(exchangePortalMapper.mapToExchangePortalDto(analyzerService.findMinRatio(Currency.XMR))).thenReturn(exchangePortalDto);
 
@@ -61,7 +61,7 @@ public class AnalyzerControllerTestSuite {
     public void getMaxValueTest() throws Exception {
         //Given
         ExchangePortalDto exchangePortalDto = new ExchangePortalDto(1L, "nomics", Currency.XMR,
-                Currency.USD,160.00, LocalDateTime.of(2020, 12, 20, 20, 50));
+                Currency.USD, 160.00, LocalDateTime.of(2020, 12, 20, 20, 50));
 
         when(exchangePortalMapper.mapToExchangePortalDto(analyzerService.findMinRatio(Currency.XMR))).thenReturn(exchangePortalDto);
 
@@ -83,7 +83,7 @@ public class AnalyzerControllerTestSuite {
     public void getOldestValueTest() throws Exception {
         //Given
         ExchangePortalDto exchangePortalDto = new ExchangePortalDto(1L, "nomics", Currency.XMR,
-                Currency.USD,160.00, LocalDateTime.of(2020, 12, 20, 20, 50));
+                Currency.USD, 160.00, LocalDateTime.of(2020, 12, 20, 20, 50));
 
         when(exchangePortalMapper.mapToExchangePortalDto(analyzerService.findMinRatio(Currency.XMR))).thenReturn(exchangePortalDto);
 
@@ -105,7 +105,7 @@ public class AnalyzerControllerTestSuite {
     public void getNewestValueTest() throws Exception {
         //Given
         ExchangePortalDto exchangePortalDto = new ExchangePortalDto(1L, "nomics", Currency.XMR,
-                Currency.USD,160.00, LocalDateTime.of(2020, 12, 20, 20, 50));
+                Currency.USD, 160.00, LocalDateTime.of(2020, 12, 20, 20, 50));
 
         when(exchangePortalMapper.mapToExchangePortalDto(analyzerService.findMinRatio(Currency.XMR))).thenReturn(exchangePortalDto);
 

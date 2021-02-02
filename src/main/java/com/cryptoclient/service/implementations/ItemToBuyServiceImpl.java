@@ -61,29 +61,29 @@ public class ItemToBuyServiceImpl implements ItemToBuyService {
             NotEnoughUsdInTheWalletException {
         ItemToBuy itemToBuy = findItemToBuyById(itemToBuyId);
 
-            if (checkIfTimeIsNotOlderThen20Min(itemToBuy.getExchangePortal())
+        if (checkIfTimeIsNotOlderThen20Min(itemToBuy.getExchangePortal())
                 && checkIfWalletHasSufficientFunds(walletId, itemToBuy)) {
-                //1) Subtract USD amount
-                WalletItem walletItem = walletItemService.returnUsdWalletItem(walletId);
-                Double oldValue = walletItem.getQuantity();
-                Double costValue = itemToBuy.getQuantityToBuy() * itemToBuy.getExchangePortal().getRatio();
-                walletItem.setQuantity(oldValue-costValue);
-                walletItemService.save(walletItem);
-                //2) Add bought wallet item
-                WalletItem addWalletItem = walletItemService.returnCurrencyWalletItem(walletId, itemToBuy.getExchangePortal().getCurrencyToBuy());
-                Double oldCurrencyValue = addWalletItem.getQuantity();
-                Double newCurrencyValue = oldCurrencyValue + itemToBuy.getQuantityToBuy();
-                addWalletItem.setQuantity(newCurrencyValue);
-                walletItemService.save(addWalletItem);
-                //3) Delete itemToBuy
-                deleteItemToBuy(itemToBuyId);
-            } else { // Error handling
-                if (!checkIfTimeIsNotOlderThen20Min(itemToBuy.getExchangePortal()))
-                    throw new ExchangePortalPriceTooOldException("Your exchange Portal price might be too old (20 min validation)");
-                if (!checkIfWalletHasSufficientFunds(walletId, itemToBuy))
-                    throw new NotEnoughUsdInTheWalletException("You don't have sufficient funds in USD");
-                else throw new NotFoundException("Common error");
-            }
+            //1) Subtract USD amount
+            WalletItem walletItem = walletItemService.returnUsdWalletItem(walletId);
+            Double oldValue = walletItem.getQuantity();
+            Double costValue = itemToBuy.getQuantityToBuy() * itemToBuy.getExchangePortal().getRatio();
+            walletItem.setQuantity(oldValue - costValue);
+            walletItemService.save(walletItem);
+            //2) Add bought wallet item
+            WalletItem addWalletItem = walletItemService.returnCurrencyWalletItem(walletId, itemToBuy.getExchangePortal().getCurrencyToBuy());
+            Double oldCurrencyValue = addWalletItem.getQuantity();
+            Double newCurrencyValue = oldCurrencyValue + itemToBuy.getQuantityToBuy();
+            addWalletItem.setQuantity(newCurrencyValue);
+            walletItemService.save(addWalletItem);
+            //3) Delete itemToBuy
+            deleteItemToBuy(itemToBuyId);
+        } else { // Error handling
+            if (!checkIfTimeIsNotOlderThen20Min(itemToBuy.getExchangePortal()))
+                throw new ExchangePortalPriceTooOldException("Your exchange Portal price might be too old (20 min validation)");
+            if (!checkIfWalletHasSufficientFunds(walletId, itemToBuy))
+                throw new NotEnoughUsdInTheWalletException("You don't have sufficient funds in USD");
+            else throw new NotFoundException("Common error");
+        }
     }
 
     private boolean checkIfTimeIsNotOlderThen20Min(ExchangePortal exchangePortal) {
@@ -93,8 +93,7 @@ public class ItemToBuyServiceImpl implements ItemToBuyService {
 
     private boolean checkIfWalletHasSufficientFunds(Long walletId, ItemToBuy itemToBuy) {
         Double walletUsdAmount = walletService.checkHowManyUsdWalletHas(walletId);
-            if (itemToBuy.getQuantityToBuy() * itemToBuy.getExchangePortal().getRatio() < walletUsdAmount) return true;
-        return false;
+        return itemToBuy.getQuantityToBuy() * itemToBuy.getExchangePortal().getRatio() < walletUsdAmount;
     }
 
 }

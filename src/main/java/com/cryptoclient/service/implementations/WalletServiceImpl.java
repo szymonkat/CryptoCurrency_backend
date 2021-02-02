@@ -72,7 +72,7 @@ public class WalletServiceImpl implements WalletService {
     }
 
     @Override
-    public Double checkHowManyUsdWalletHas(Long walletId)  throws NotFoundException {
+    public Double checkHowManyUsdWalletHas(Long walletId) throws NotFoundException {
         Wallet wallet = findWalletById(walletId);
         Double fundsUsd = 0.0;
         try {

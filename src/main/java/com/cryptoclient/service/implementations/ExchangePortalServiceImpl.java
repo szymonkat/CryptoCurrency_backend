@@ -40,8 +40,8 @@ public class ExchangePortalServiceImpl implements ExchangePortalService {
 
     @Override
     public void delete(Long exchangePortalId) {
-       findExchangePortalById(exchangePortalId);
-       exchangePortalRepository.deleteById(exchangePortalId);
+        findExchangePortalById(exchangePortalId);
+        exchangePortalRepository.deleteById(exchangePortalId);
     }
 
 }
