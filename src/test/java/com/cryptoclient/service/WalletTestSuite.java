@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.LocalDateTime;
@@ -21,6 +22,7 @@ import static org.junit.Assert.assertTrue;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
+@ActiveProfiles("test")
 public class WalletTestSuite {
 
     LocalDateTime now = LocalDateTime.now();
@@ -72,11 +74,11 @@ public class WalletTestSuite {
     @Test
     public void shouldCreateWallet() {
         //Given
-        Wallet wallet = new Wallet(various + "4");
+        Wallet wallet = new Wallet("Nowy_portfel");
         //When
         Wallet newWallet = walletService.createWallet(wallet);
         //Then
-        assertEquals(various + "4", newWallet.getName());
+        assertEquals("Nowy_portfel", newWallet.getName());
         //Cleanup
         walletRepository.deleteById(wallet.getId());
     }

@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: CryptoClient
+  datasource:
+    url: jdbc:mysql://localhost:3306/crypto_client?serverTimezone=Europe/Warsaw&useSSL=False&allowPublicKeyRetrieval=True
+    username: cryptoclient
+    passwOrd: cryptopassword
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+back:
+  api:
+    address: http://localhost:8080
+
+server:
+  port: 8083
+
+  #ConinLayerData
+coinLayer:
+  api:
+    endpoint: http://api.coinlayer.com/live
+    accessKey: 78c5c861ad79f56f38f0b253bc119ffc
+    name: CoinLayer
+
+  #NomicsData
+nomics:
+  api:
+    endpoint: https://api.nomics.com/v1/
+    accessKey: 0f8bee2e7eef5b84b14097c6701103dd
+    name: Nomics
+
+---
+spring:
+  profiles: test
+  datasource:
+    url: jdbc:h2:mem:testdb;DATABASE_TO_UPPER=false;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+
