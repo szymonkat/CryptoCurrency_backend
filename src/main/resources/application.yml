@@ -1,3 +1,4 @@
+#Default profile
 spring:
   application:
     name: CryptoClient
@@ -15,6 +16,7 @@ spring:
     hibernate:
       ddl-auto: update
 
+#Port address
 back:
   api:
     address: http://localhost:8080
@@ -22,20 +24,21 @@ back:
 server:
   port: 8083
 
-  #ConinLayerData
+#CoinLayerData
 coinLayer:
   api:
     endpoint: http://api.coinlayer.com/live
     accessKey: 78c5c861ad79f56f38f0b253bc119ffc
     name: CoinLayer
 
-  #NomicsData
+#NomicsData
 nomics:
   api:
     endpoint: https://api.nomics.com/v1/
     accessKey: 0f8bee2e7eef5b84b14097c6701103dd
     name: Nomics
 
+#Test profile
 ---
 spring:
   profiles: test
