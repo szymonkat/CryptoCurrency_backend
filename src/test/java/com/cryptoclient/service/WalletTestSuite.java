@@ -12,7 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,8 +24,6 @@ import static org.junit.Assert.assertTrue;
 @ActiveProfiles("test")
 public class WalletTestSuite {
 
-    LocalDateTime now = LocalDateTime.now();
-    String various = now.toString();
     @Autowired
     private WalletService walletService;
     @Autowired
@@ -35,7 +32,7 @@ public class WalletTestSuite {
     @Test
     public void shouldFindWalletById() {
         //Given
-        Wallet wallet = new Wallet(various);
+        Wallet wallet = new Wallet("New_wallet");
         //When
         Wallet createdWallet = walletService.createWallet(wallet);
         Long createdWalletId = createdWallet.getId();
@@ -50,9 +47,9 @@ public class WalletTestSuite {
     @Test
     public void shouldGetWallets() {
         //Given
-        Wallet wallet1 = new Wallet(various + "1");
-        Wallet wallet2 = new Wallet(various + "2");
-        Wallet wallet3 = new Wallet(various + "3");
+        Wallet wallet1 = new Wallet( "New_wallet_1");
+        Wallet wallet2 = new Wallet( "New_wallet_2");
+        Wallet wallet3 = new Wallet( "New_wallet_3");
         List<Wallet> walletList = new ArrayList<>();
         //When
         walletService.createWallet(wallet1);
@@ -74,22 +71,24 @@ public class WalletTestSuite {
     @Test
     public void shouldCreateWallet() {
         //Given
-        Wallet wallet = new Wallet("Nowy_portfel");
+        Wallet wallet = new Wallet("New_wallet_4");
         //When
         Wallet newWallet = walletService.createWallet(wallet);
         //Then
-        assertEquals("Nowy_portfel", newWallet.getName());
+        assertEquals("New_wallet_4", newWallet.getName());
         //Cleanup
         walletRepository.deleteById(wallet.getId());
     }
 
+
+
     @Test
     public void shouldUpdateWalletsName() {
         //Given
-        Wallet wallet = new Wallet(various + "5");
+        Wallet wallet = new Wallet("New_wallet_5");
         walletService.createWallet(wallet);
         Long walletId = wallet.getId();
-        Wallet updatedWallet = new Wallet(various + "6");
+        Wallet updatedWallet = new Wallet( "New_wallet_6");
         updatedWallet.setId(walletId);
         //When
         Wallet newWallet = walletService.updateWalletName(updatedWallet);
@@ -103,7 +102,7 @@ public class WalletTestSuite {
     @Test
     public void shouldDeleteWallet() {
         //Given
-        Wallet wallet = new Wallet(various + "7");
+        Wallet wallet = new Wallet("New_wallet_7");
         walletService.createWallet(wallet);
         Long walletId = wallet.getId();
         List<Wallet> walletList = new ArrayList<>();
@@ -121,12 +120,12 @@ public class WalletTestSuite {
     @Test
     public void shouldSaveWallet() {
         //Given
-        Wallet wallet = new Wallet(various + "8");
+        Wallet wallet = new Wallet( "New_wallet_8");
         //When
         walletService.save(wallet);
         Long walletId = wallet.getId();
         //Then
-        assertEquals(walletService.findWalletById(walletId).getName(), various + "8");
+        assertEquals(walletService.findWalletById(walletId).getName(), "New_wallet_8");
         //Cleanup
         walletRepository.deleteById(wallet.getId());
     }
@@ -134,7 +133,7 @@ public class WalletTestSuite {
     @Test
     public void shouldCheckIfWalletExistsById() {
         //Given
-        Wallet wallet = new Wallet(various + "9");
+        Wallet wallet = new Wallet("New_wallet_9");
         walletService.save(wallet);
         //When
         boolean walletExists = walletService.checkIfExistsById(wallet.getId());
@@ -148,7 +147,7 @@ public class WalletTestSuite {
     @Test
     public void shouldCheckHowManyUsdWalletHas() {
         //Given
-        Wallet wallet = new Wallet(various + "10");
+        Wallet wallet = new Wallet("New_wallet_10");
         List<WalletItem> walletItemList = new ArrayList<>();
         WalletItem walletItem = new WalletItem(wallet, Currency.USD, 200.0);
         walletItemList.add(walletItem);

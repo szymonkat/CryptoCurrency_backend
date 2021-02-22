@@ -30,6 +30,7 @@ dependencies {
 	compile('io.springfox:springfox-swagger2:2.7.0')
 	compile('io.springfox:springfox-swagger-ui:2.7.0')
 	compile('com.google.code.gson:gson:2.8.2')
+	testCompile "org.spockframework:spock-core:1.1-groovy-2.4-rc-2"
 	compileOnly 'org.projectlombok:lombok'
 	compileOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
