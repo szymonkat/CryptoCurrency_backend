@@ -1,5 +1,6 @@
 package com.cryptoclient.mapper;
 
+import com.cryptoclient.domain.Currency;
 import com.cryptoclient.domain.ExchangePortal;
 import com.cryptoclient.dto.ExchangePortalDto;
 import com.cryptoclient.service.interfaces.ItemToBuyService;
@@ -17,14 +18,24 @@ public class ExchangePortalMapper {
 
     public ExchangePortal mapToExchangePortal(ExchangePortalDto exchangePortalDto) {
         if (exchangePortalDto.getItemToBuyDtoId() == null) {
-            return new ExchangePortal(exchangePortalDto.getId(), exchangePortalDto.getProvider(),
-                    exchangePortalDto.getCurrencyToBuy(), exchangePortalDto.getCurrencyToPay(),
-                    exchangePortalDto.getRatio(), exchangePortalDto.getTime());
+            return ExchangePortal.builder()
+                    .id(exchangePortalDto.getId())
+                    .provider(exchangePortalDto.getProvider())
+                    .currencyToBuy(exchangePortalDto.getCurrencyToBuy())
+                    .currencyToPay(exchangePortalDto.getCurrencyToPay())
+                    .ratio(exchangePortalDto.getRatio())
+                    .time(exchangePortalDto.getTime())
+                    .build();
         } else {
-            return new ExchangePortal(exchangePortalDto.getId(), exchangePortalDto.getProvider(),
-                    exchangePortalDto.getCurrencyToBuy(), exchangePortalDto.getCurrencyToPay(),
-                    exchangePortalDto.getRatio(), exchangePortalDto.getTime(),
-                    itemToBuyService.findItemToBuyById(exchangePortalDto.getItemToBuyDtoId()));
+            return ExchangePortal.builder()
+                    .id(exchangePortalDto.getId())
+                    .provider(exchangePortalDto.getProvider())
+                    .currencyToBuy(exchangePortalDto.getCurrencyToBuy())
+                    .currencyToPay(exchangePortalDto.getCurrencyToPay())
+                    .ratio(exchangePortalDto.getRatio())
+                    .time(exchangePortalDto.getTime())
+                    .itemToBuy(itemToBuyService.findItemToBuyById(exchangePortalDto.getItemToBuyDtoId()))
+                    .build();
         }
     }
 

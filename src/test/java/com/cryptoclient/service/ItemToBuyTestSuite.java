@@ -27,8 +27,14 @@ import static org.junit.Assert.*;
 @ActiveProfiles("test")
 public class ItemToBuyTestSuite {
 
-    ExchangePortal exchangePortal = new ExchangePortal("nomics", Currency.XMR, Currency.USD,
-            10.0, LocalDateTime.of(2021, 12, 2, 6, 23));
+    ExchangePortal exchangePortal = ExchangePortal.builder()
+            .provider("nomics")
+            .currencyToBuy(Currency.XMR)
+            .currencyToPay(Currency.USD)
+            .ratio(10.0)
+            .time(LocalDateTime.of(2021, 12, 2, 6, 23))
+            .build();
+
     ItemToBuy itemToBuy = new ItemToBuy(exchangePortal, 200.0);
     @Autowired
     private ItemToBuyService itemToBuyService;

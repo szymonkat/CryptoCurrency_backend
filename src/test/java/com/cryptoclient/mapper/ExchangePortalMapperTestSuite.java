@@ -42,13 +42,19 @@ public class ExchangePortalMapperTestSuite {
     @Test
     public void shouldMapToExchangePortalDto() {
         //Given
-        ExchangePortal exchangePortal = new ExchangePortal(2L, "coinlayer", Currency.BTC, Currency.USD,
-                350.0, LocalDateTime.of(2021, 12, 1, 7, 0));
+        ExchangePortal exchangePortal = ExchangePortal.builder()
+                .id(2L)
+                .provider("coinLayer")
+                .currencyToBuy(Currency.BTC)
+                .currencyToPay(Currency.USD)
+                .ratio(350.0)
+                .time(LocalDateTime.of(2021, 12, 1, 7, 0))
+                .build();
         //When
         ExchangePortalDto exchangePortalDto = exchangePortalMapper.mapToExchangePortalDto(exchangePortal);
         //Then
         Assert.assertEquals(exchangePortalDto.getId(), Long.valueOf(2));
-        Assert.assertEquals(exchangePortalDto.getProvider(), "coinlayer");
+        Assert.assertEquals(exchangePortalDto.getProvider(), "coinLayer");
         Assert.assertEquals(exchangePortalDto.getCurrencyToBuy(), Currency.BTC);
         Assert.assertEquals(exchangePortalDto.getCurrencyToPay(), Currency.USD);
         Assert.assertEquals(exchangePortalDto.getRatio(), 350.0, 0.001);
@@ -86,10 +92,23 @@ public class ExchangePortalMapperTestSuite {
     @Test
     public void shouldMapToExchangePortalsDtoList() {
         //Given
-        ExchangePortal exchangePortal1 = new ExchangePortal(1L, "nomics", Currency.XMR, Currency.USD,
-                300.0, LocalDateTime.of(2021, 12, 1, 7, 0));
-        ExchangePortal exchangePortal2 = new ExchangePortal(2L, "coinlayer", Currency.BTC, Currency.USD,
-                350.0, LocalDateTime.of(2021, 12, 1, 7, 0));
+        ExchangePortal exchangePortal1 = ExchangePortal.builder()
+                .id(1L)
+                .provider("nomics")
+                .currencyToBuy(Currency.XMR)
+                .currencyToPay(Currency.USD)
+                .ratio(300.0)
+                .time(LocalDateTime.of(2021, 12, 1, 7, 0))
+                .build();
+        ExchangePortal exchangePortal2 = ExchangePortal.builder()
+                .id(2L)
+                .provider("coinLayer")
+                .currencyToBuy(Currency.BTC)
+                .currencyToPay(Currency.USD)
+                .ratio(350.0)
+                .time(LocalDateTime.of(2021, 12, 1, 7, 0))
+                .build();
+
         List<ExchangePortal> exchangePortalList = new ArrayList<>();
         exchangePortalList.add(exchangePortal1);
         exchangePortalList.add(exchangePortal2);
@@ -104,7 +123,7 @@ public class ExchangePortalMapperTestSuite {
         Assert.assertEquals(exchangePortalDtoList.get(0).getRatio(), 300.0, 0.001);
         Assert.assertEquals(exchangePortalDtoList.get(0).getTime(), LocalDateTime.of(2021, 12, 1, 7, 0));
         Assert.assertEquals(exchangePortalDtoList.get(1).getId(), Long.valueOf(2));
-        Assert.assertEquals(exchangePortalDtoList.get(1).getProvider(), "coinlayer");
+        Assert.assertEquals(exchangePortalDtoList.get(1).getProvider(), "coinLayer");
         Assert.assertEquals(exchangePortalDtoList.get(1).getCurrencyToBuy(), Currency.BTC);
         Assert.assertEquals(exchangePortalDtoList.get(1).getCurrencyToPay(), Currency.USD);
         Assert.assertEquals(exchangePortalDtoList.get(1).getRatio(), 350.0, 0.001);

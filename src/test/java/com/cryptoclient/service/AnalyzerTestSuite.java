@@ -21,14 +21,38 @@ import static org.junit.Assert.assertEquals;
 @ActiveProfiles("test")
 public class AnalyzerTestSuite {
 
-    ExchangePortal exchangePortalNewest = new ExchangePortal("nomics", Currency.XMR, Currency.USD,
-            300.0, LocalDateTime.of(2100, 12, 2, 6, 23));
-    ExchangePortal exchangePortalOldest = new ExchangePortal("nomics", Currency.XMR, Currency.USD,
-            300.0, LocalDateTime.of(1800, 12, 2, 6, 23));
-    ExchangePortal exchangePortalMax = new ExchangePortal("nomics", Currency.XMR, Currency.USD,
-            10000000000.0, LocalDateTime.of(2021, 12, 2, 6, 23));
-    ExchangePortal exchangePortalMin = new ExchangePortal("nomics", Currency.XMR, Currency.USD,
-            0.0001, LocalDateTime.of(2021, 12, 2, 6, 23));
+    ExchangePortal exchangePortalNewest = ExchangePortal.builder()
+            .provider("nomics")
+            .currencyToBuy(Currency.XMR)
+            .currencyToPay(Currency.USD)
+            .ratio(300.0)
+            .time(LocalDateTime.of(2100, 12, 2, 6, 23))
+            .build();
+
+    ExchangePortal exchangePortalOldest = ExchangePortal.builder()
+            .provider("nomics")
+            .currencyToBuy(Currency.XMR)
+            .currencyToPay(Currency.USD)
+            .ratio(300.0)
+            .time(LocalDateTime.of(1800, 12, 2, 6, 23))
+            .build();
+
+    ExchangePortal exchangePortalMax = ExchangePortal.builder()
+            .provider("nomics")
+            .currencyToBuy(Currency.XMR)
+            .currencyToPay(Currency.USD)
+            .ratio(10000000000.0)
+            .time(LocalDateTime.of(1800, 12, 2, 6, 23))
+            .build();
+
+    ExchangePortal exchangePortalMin = ExchangePortal.builder()
+            .provider("nomics")
+            .currencyToBuy(Currency.XMR)
+            .currencyToPay(Currency.USD)
+            .ratio(0.0001)
+            .time(LocalDateTime.of(2021, 12, 2, 6, 23))
+            .build();
+
     @Autowired
     private AnalyzerService analyzerService;
     @Autowired

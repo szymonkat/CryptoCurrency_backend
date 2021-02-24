@@ -55,8 +55,15 @@ public class ExchangePortalControllerTestSuite {
     @Test
     public void postExchangePortalTest() throws Exception {
         //Given
-        ExchangePortal exchangePortal = new ExchangePortal(1L, "nomics", Currency.XMR,
-                Currency.USD, 160.00, LocalDateTime.of(2020, 12, 20, 20, 50));
+        ExchangePortal exchangePortal = ExchangePortal.builder()
+                        .id(1L)
+                        .provider("nomics")
+                        .currencyToBuy(Currency.XMR)
+                        .currencyToPay(Currency.USD)
+                        .ratio(160.0)
+                        .time(LocalDateTime.of(2020, 12, 20, 20, 50))
+                        .build();
+
         ExchangePortalDto exchangePortalDto = new ExchangePortalDto(1L, "nomics", Currency.XMR,
                 Currency.USD, 160.00, LocalDateTime.of(2020, 12, 20, 20, 50));
         Currency currency = Currency.XMR;
@@ -92,8 +99,14 @@ public class ExchangePortalControllerTestSuite {
     @Test
     public void getExchangePortalTest() throws Exception {
         //Given
-        ExchangePortal exchangePortal = new ExchangePortal(1L, "nomics", Currency.XMR,
-                Currency.USD, 160.00, LocalDateTime.of(2020, 12, 20, 20, 50));
+        ExchangePortal exchangePortal = ExchangePortal.builder()
+                .id(1L)
+                .provider("nomics")
+                .currencyToBuy(Currency.XMR)
+                .currencyToPay(Currency.USD)
+                .ratio(160.0)
+                .time(LocalDateTime.of(2020, 12, 20, 20, 50))
+                .build();
         ExchangePortalDto exchangePortalDto = new ExchangePortalDto(1L, "nomics", Currency.XMR,
                 Currency.USD, 160.00, LocalDateTime.of(2020, 12, 20, 20, 50));
         Currency currency = Currency.XMR;

@@ -35,8 +35,15 @@ public class ItemToBuyMapperTestSuite {
     public void shouldMapToItemToBuy() {
         //Given
         ItemToBuyDto itemToBuyDto = new ItemToBuyDto(1L, 2L, 200.0);
-        ExchangePortal exchangePortal = new ExchangePortal(2L, "coinlayer", Currency.BTC, Currency.USD,
-                350.0, LocalDateTime.of(2021, 12, 1, 7, 0));
+        ExchangePortal exchangePortal = ExchangePortal.builder()
+                .id(2L)
+                .provider("coinLayer")
+                .currencyToBuy(Currency.BTC)
+                .currencyToPay(Currency.USD)
+                .ratio(350.0)
+                .time(LocalDateTime.of(2021, 12, 1, 7, 0))
+                .build();
+
         when(exchangePortalService.findExchangePortalById(2L)).thenReturn(exchangePortal);
         //When
         ItemToBuy itemToBuy = itemToBuyMapper.mapToItemToBuy(itemToBuyDto);
@@ -49,8 +56,15 @@ public class ItemToBuyMapperTestSuite {
     @Test
     public void shouldMapToItemToBuyDto() {
         //Given
-        ExchangePortal exchangePortal = new ExchangePortal(2L, "coinlayer", Currency.BTC, Currency.USD,
-                350.0, LocalDateTime.of(2021, 12, 1, 7, 0));
+        ExchangePortal exchangePortal = ExchangePortal.builder()
+                .id(2L)
+                .provider("coinLayer")
+                .currencyToBuy(Currency.BTC)
+                .currencyToPay(Currency.USD)
+                .ratio(350.0)
+                .time(LocalDateTime.of(2021, 12, 1, 7, 0))
+                .build();
+
         ItemToBuy itemToBuy = new ItemToBuy(1L, exchangePortal, 200.0);
         //When
         ItemToBuyDto itemToBuyDto = itemToBuyMapper.mapToItemToBuyDto(itemToBuy);
@@ -65,10 +79,24 @@ public class ItemToBuyMapperTestSuite {
         //Given
         ItemToBuyDto itemToBuyDto1 = new ItemToBuyDto(1L, 2L, 200.0);
         ItemToBuyDto itemToBuyDto2 = new ItemToBuyDto(3L, 4L, 500.0);
-        ExchangePortal exchangePortal1 = new ExchangePortal(2L, "coinlayer", Currency.BTC, Currency.USD,
-                350.0, LocalDateTime.of(2021, 12, 1, 7, 0));
-        ExchangePortal exchangePortal2 = new ExchangePortal(4L, "coinlayer", Currency.BTC, Currency.USD,
-                350.0, LocalDateTime.of(2021, 12, 1, 7, 0));
+        ExchangePortal exchangePortal1 = ExchangePortal.builder()
+                .id(2L)
+                .provider("coinLayer")
+                .currencyToBuy(Currency.BTC)
+                .currencyToPay(Currency.USD)
+                .ratio(350.0)
+                .time(LocalDateTime.of(2021, 12, 1, 7, 0))
+                .build();
+
+        ExchangePortal exchangePortal2 = ExchangePortal.builder()
+                .id(4L)
+                .provider("coinLayer")
+                .currencyToBuy(Currency.BTC)
+                .currencyToPay(Currency.USD)
+                .ratio(350.0)
+                .time(LocalDateTime.of(2021, 12, 1, 7, 0))
+                .build();
+
         when(exchangePortalService.findExchangePortalById(2L)).thenReturn(exchangePortal1);
         when(exchangePortalService.findExchangePortalById(4L)).thenReturn(exchangePortal2);
 
@@ -89,10 +117,24 @@ public class ItemToBuyMapperTestSuite {
     @Test
     public void shouldMapToItemToBuyDtoList() {
         //Given
-        ExchangePortal exchangePortal1 = new ExchangePortal(2L, "coinlayer", Currency.BTC, Currency.USD,
-                350.0, LocalDateTime.of(2021, 12, 1, 7, 0));
-        ExchangePortal exchangePortal2 = new ExchangePortal(4L, "coinlayer", Currency.BTC, Currency.USD,
-                350.0, LocalDateTime.of(2021, 12, 1, 7, 0));
+        ExchangePortal exchangePortal1 = ExchangePortal.builder()
+                .id(2L)
+                .provider("coinLayer")
+                .currencyToBuy(Currency.BTC)
+                .currencyToPay(Currency.USD)
+                .ratio(350.0)
+                .time(LocalDateTime.of(2021, 12, 1, 7, 0))
+                .build();
+
+        ExchangePortal exchangePortal2 = ExchangePortal.builder()
+                .id(4L)
+                .provider("coinLayer")
+                .currencyToBuy(Currency.BTC)
+                .currencyToPay(Currency.USD)
+                .ratio(350.0)
+                .time(LocalDateTime.of(2021, 12, 1, 7, 0))
+                .build();
+
         ItemToBuy itemToBuy1 = new ItemToBuy(1L, exchangePortal1, 200.0);
         ItemToBuy itemToBuy2 = new ItemToBuy(3L, exchangePortal2, 500.0);
 

@@ -1,3 +1,4 @@
+/*
 package com.cryptoclient.service
 
 import com.cryptoclient.domain.Wallet
@@ -9,7 +10,7 @@ import spock.lang.Specification
 
 @SpringBootTest
 @ActiveProfiles("test")
-class WalletServiceSpockTestSuite extends Specification {
+class WalletServiceSpockTestSuite extends spock.lang.Specification {
 
     @Autowired
     private WalletService walletService
@@ -20,9 +21,22 @@ class WalletServiceSpockTestSuite extends Specification {
 
     def "create wallet using service"() {
         when:
-
             Wallet createdWallet = walletService.createWallet(wallet);
         then:
             createdWallet.getName() == "wallet";
     }
+
+    def "two plus two should equal four"() {
+        given:
+        int left = 2
+        int right = 2
+
+        when:
+        int result = left + right
+
+        then:
+        result == 4
+    }
+
 }
+*/

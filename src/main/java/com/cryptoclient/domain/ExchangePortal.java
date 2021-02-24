@@ -37,7 +37,7 @@ public class ExchangePortal {
     @OneToOne(mappedBy = "exchangePortal")
     private ItemToBuy itemToBuy;
 
-    public ExchangePortal(String provider, Currency currencyToBuy, Currency currencyToPay, Double ratio, LocalDateTime time) {
+    private ExchangePortal(String provider, Currency currencyToBuy, Currency currencyToPay, Double ratio, LocalDateTime time) {
         this.provider = provider;
         this.currencyToBuy = currencyToBuy;
         this.currencyToPay = currencyToPay;
@@ -45,7 +45,7 @@ public class ExchangePortal {
         this.time = time;
     }
 
-    public ExchangePortal(Long id, String provider, Currency currencyToBuy, Currency currencyToPay, Double ratio, LocalDateTime time) {
+    private ExchangePortal(Long id, String provider, Currency currencyToBuy, Currency currencyToPay, Double ratio, LocalDateTime time) {
         this.id = id;
         this.provider = provider;
         this.currencyToBuy = currencyToBuy;
