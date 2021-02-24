@@ -13,51 +13,45 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-//@Transactional
+import static org.junit.Assert.*;
+
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
+@ActiveProfiles("test")
 public class ItemToBuyTestSuite {
 
-    @Autowired
-    private ItemToBuyService itemToBuyService;
-
-    @Autowired
-    private ExchangePortalService exchangePortalService;
-
-    @Autowired
-    private ItemToBuyRepository itemToBuyRepository;
-
-    @Autowired
-    private ExchangePortalRepository exchangePortalRepository;
-
-    @Autowired
-    private WalletService walletService;
-
-    @Autowired
-    private WalletItemService walletItemService;
-
-    @Autowired
-    private WalletRepository walletRepository;
-
-    @Autowired
-    private WalletItemRepository walletItemRepository;
-
-
-    ExchangePortal exchangePortal = new ExchangePortal("nomics", Currency.XMR, Currency.USD,
-            10.0,  LocalDateTime.of(2021, 12, 2, 6, 23));
+    ExchangePortal exchangePortal = ExchangePortal.builder()
+            .provider("nomics")
+            .currencyToBuy(Currency.XMR)
+            .currencyToPay(Currency.USD)
+            .ratio(10.0)
+            .time(LocalDateTime.of(2021, 12, 2, 6, 23))
+            .build();
 
     ItemToBuy itemToBuy = new ItemToBuy(exchangePortal, 200.0);
+    @Autowired
+    private ItemToBuyService itemToBuyService;
+    @Autowired
+    private ExchangePortalService exchangePortalService;
+    @Autowired
+    private ItemToBuyRepository itemToBuyRepository;
+    @Autowired
+    private ExchangePortalRepository exchangePortalRepository;
+    @Autowired
+    private WalletService walletService;
+    @Autowired
+    private WalletItemService walletItemService;
+    @Autowired
+    private WalletRepository walletRepository;
+    @Autowired
+    private WalletItemRepository walletItemRepository;
 
     @Test
     public void shouldCreateItemToBuy() {
@@ -141,8 +135,6 @@ public class ItemToBuyTestSuite {
         walletItemService.postWalletItem(walletItem);
         Long walletItemLong = walletItem.getId();
 
-        wallet.addWalletItem(walletItem);
-
         //When
         itemToBuyService.finalizeItemToBuy(itemToBuyLong, walletLong);
 
@@ -160,17 +152,16 @@ public class ItemToBuyTestSuite {
 
     @Test
     public void shouldDeleteItemToBuy() {
-        /*//Given
+        //Given
         exchangePortalService.save(exchangePortal);
         Long exchangePortalLong = exchangePortal.getId();
-        //When
         itemToBuyService.save(itemToBuy);
         Long itemToBuyLong = itemToBuy.getId();
+        //When
+        itemToBuyService.deleteItemToBuy(itemToBuyLong);
         //Then
-        assertEquals(itemToBuy.getExchangePortal().getRatio(), 10.0, 0.0001);
-        assertEquals(itemToBuy.getQuantityToBuy(), 200.0, 0.0001);
+        assertFalse(itemToBuyRepository.existsById(itemToBuyLong));
         //Clean-up
-        itemToBuyRepository.deleteById(itemToBuyLong);
-        exchangePortalRepository.deleteById(exchangePortalLong);*/
+        exchangePortalRepository.deleteById(exchangePortalLong);
     }
 }

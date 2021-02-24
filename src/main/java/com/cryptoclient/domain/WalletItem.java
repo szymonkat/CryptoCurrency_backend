@@ -22,7 +22,7 @@ public class WalletItem {
 
     @NotNull
     @ManyToOne//(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="wallet_id")
+    @JoinColumn(name = "wallet_id")
     private Wallet wallet;
 
     @Column

@@ -4,13 +4,13 @@ import com.cryptoclient.domain.Currency;
 import com.cryptoclient.dto.ExchangePortalDto;
 import com.cryptoclient.mapper.ExchangePortalMapper;
 import com.cryptoclient.service.interfaces.AnalyzerService;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
@@ -25,6 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(AnalyzerController.class)
+@ActiveProfiles("test")
 public class AnalyzerControllerTestSuite {
 
     @Autowired
@@ -40,7 +41,7 @@ public class AnalyzerControllerTestSuite {
     public void getMinValueTest() throws Exception {
         //Given
         ExchangePortalDto exchangePortalDto = new ExchangePortalDto(1L, "nomics", Currency.XMR,
-                Currency.USD,160.00, LocalDateTime.of(2020, 12, 20, 20, 50));
+                Currency.USD, 160.00, LocalDateTime.of(2020, 12, 20, 20, 50));
 
         when(exchangePortalMapper.mapToExchangePortalDto(analyzerService.findMinRatio(Currency.XMR))).thenReturn(exchangePortalDto);
 
@@ -62,7 +63,7 @@ public class AnalyzerControllerTestSuite {
     public void getMaxValueTest() throws Exception {
         //Given
         ExchangePortalDto exchangePortalDto = new ExchangePortalDto(1L, "nomics", Currency.XMR,
-                Currency.USD,160.00, LocalDateTime.of(2020, 12, 20, 20, 50));
+                Currency.USD, 160.00, LocalDateTime.of(2020, 12, 20, 20, 50));
 
         when(exchangePortalMapper.mapToExchangePortalDto(analyzerService.findMinRatio(Currency.XMR))).thenReturn(exchangePortalDto);
 
@@ -84,7 +85,7 @@ public class AnalyzerControllerTestSuite {
     public void getOldestValueTest() throws Exception {
         //Given
         ExchangePortalDto exchangePortalDto = new ExchangePortalDto(1L, "nomics", Currency.XMR,
-                Currency.USD,160.00, LocalDateTime.of(2020, 12, 20, 20, 50));
+                Currency.USD, 160.00, LocalDateTime.of(2020, 12, 20, 20, 50));
 
         when(exchangePortalMapper.mapToExchangePortalDto(analyzerService.findMinRatio(Currency.XMR))).thenReturn(exchangePortalDto);
 
@@ -106,7 +107,7 @@ public class AnalyzerControllerTestSuite {
     public void getNewestValueTest() throws Exception {
         //Given
         ExchangePortalDto exchangePortalDto = new ExchangePortalDto(1L, "nomics", Currency.XMR,
-                Currency.USD,160.00, LocalDateTime.of(2020, 12, 20, 20, 50));
+                Currency.USD, 160.00, LocalDateTime.of(2020, 12, 20, 20, 50));
 
         when(exchangePortalMapper.mapToExchangePortalDto(analyzerService.findMinRatio(Currency.XMR))).thenReturn(exchangePortalDto);
 

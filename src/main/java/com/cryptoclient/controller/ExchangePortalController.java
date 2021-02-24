@@ -22,7 +22,7 @@ public class ExchangePortalController {
     private final ExchangePortalService exchangePortalService;
 
     @PostMapping
-    public ExchangePortalDto createNewResponse(@RequestParam Currency currency,@RequestParam String serviceName) {
+    public ExchangePortalDto createNewResponse(@RequestParam Currency currency, @RequestParam String serviceName) {
         ApiService apiService = serviceFactory.createService(serviceName);
         ExchangePortal exchangePortal = apiService.createExchangePortal(currency);
         exchangePortalService.save(exchangePortal);

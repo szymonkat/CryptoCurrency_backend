@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,22 +22,37 @@ import static org.junit.Assert.*;
 @Transactional
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
+@ActiveProfiles("test")
 public class ExchangePortalTestSuite {
+
+    ExchangePortal exchangePortal = ExchangePortal.builder()
+            .provider("nomics")
+            .currencyToBuy(Currency.XMR)
+            .currencyToPay(Currency.USD)
+            .ratio(10.0)
+            .time(LocalDateTime.of(2021, 12, 2, 6, 23))
+            .build();
+
+    ExchangePortal exchangePortal1 = ExchangePortal.builder()
+            .provider("nomics")
+            .currencyToBuy(Currency.BTC)
+            .currencyToPay(Currency.USD)
+            .ratio(10.0)
+            .time(LocalDateTime.of(2021, 12, 2, 6, 23))
+            .build();
+
+    ExchangePortal exchangePortal2 = ExchangePortal.builder()
+            .provider("nomics")
+            .currencyToBuy(Currency.BTC)
+            .currencyToPay(Currency.USD)
+            .ratio(10.0)
+            .time(LocalDateTime.of(2021, 12, 2, 6, 23))
+            .build();
 
     @Autowired
     private ExchangePortalService exchangePortalService;
-
     @Autowired
     private ExchangePortalRepository exchangePortalRepository;
-
-    ExchangePortal exchangePortal = new ExchangePortal("nomics", Currency.XMR, Currency.USD,
-            10.0,  LocalDateTime.of(2021, 12, 2, 6, 23));
-
-    ExchangePortal exchangePortal1 = new ExchangePortal("nomics", Currency.BTC, Currency.USD,
-            10.0,  LocalDateTime.of(2021, 12, 2, 6, 23));
-
-    ExchangePortal exchangePortal2 = new ExchangePortal("nomics", Currency.BTC, Currency.USD,
-            10.0,  LocalDateTime.of(2021, 12, 2, 6, 23));
 
     @Test
     public void shouldFindExchangePortalById() {

@@ -4,5 +4,5 @@ import com.cryptoclient.domain.Currency;
 import com.cryptoclient.domain.ExchangePortal;
 
 public interface ApiService {
-    public ExchangePortal createExchangePortal(Currency currency);
+    ExchangePortal createExchangePortal(Currency currency);
 }

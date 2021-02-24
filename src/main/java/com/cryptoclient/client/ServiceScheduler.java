@@ -13,12 +13,10 @@ public class ServiceScheduler {
     public static final String NOMICS = "nomics";
     public static final Currency XMR = Currency.XMR;
     public static final Currency BTC = Currency.BTC;
-
-    @Autowired
-    private ServiceFactory serviceFactory;
-
     @Autowired
     ExchangePortalService exchangePortalService;
+    @Autowired
+    private ServiceFactory serviceFactory;
 
     @Scheduled(cron = "0 0 19 * * ?", zone = "Europe/Paris")
     public void downloadCurrencyRatioCoinLayer() {
