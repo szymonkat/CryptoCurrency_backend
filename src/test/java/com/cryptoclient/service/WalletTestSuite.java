@@ -151,25 +151,4 @@ public class WalletTestSuite {
         //Cleanup
         walletRepository.deleteById(wallet.getId());
     }
-
-
-    @Test
-    public void shouldCheckHowManyUsdWalletHas() {
-        //Given
-        Wallet wallet = new Wallet(various + "10");
-        walletService.createWallet(wallet);
-
-        WalletItem walletItem = new WalletItem(wallet,  Currency.USD,200.0);
-        walletItemService.save(walletItem);
-        wallet.addWalletItem(walletItem);
-
-        //When
-        Double usdQuantity = walletService.checkHowManyUsdWalletHas(wallet.getId());
-        //Then
-        assertEquals(usdQuantity, 200.0, 0.01);
-        //Cleanup
-//        walletItemRepository.deleteById(walletItem.getId());
-//        walletRepository.deleteById(wallet.getId());
-    }
-
 }
