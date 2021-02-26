@@ -1,8 +1,6 @@
 package com.cryptoclient.service;
 
-import com.cryptoclient.domain.Currency;
 import com.cryptoclient.domain.Wallet;
-import com.cryptoclient.domain.WalletItem;
 import com.cryptoclient.repository.WalletItemRepository;
 import com.cryptoclient.repository.WalletRepository;
 import com.cryptoclient.service.interfaces.WalletItemService;
