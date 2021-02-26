@@ -18,14 +18,14 @@ jobs:
         TERM: dumb
 
       - image: circleci/mysql:8.0.4
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-        environment:
-          MYSQL_ROOT_PASSWORD: rootpw
-          MYSQL_DATABASE: crypto_client
-          MYSQL_USER: cryptoclient
-          MYSQL_PASSWORD: cryptopassword
+      auth:
+        username: mydockerhub-user
+        password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+      environment:
+        MYSQL_ROOT_PASSWORD: rootpw
+        MYSQL_DATABASE: crypto_client
+        MYSQL_USER: cryptoclient
+        MYSQL_PASSWORD: cryptopassword
 
     steps:
       - checkout
