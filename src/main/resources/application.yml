@@ -43,7 +43,7 @@ nomics:
 spring:
   profiles: test
   datasource:
-    url: jdbc:h2:mem:testdb;DATABASE_TO_UPPER=false;DB_CLOSE_ON_EXIT=FALSE #;DB_CLOSE_DELAY=-1
+    url: jdbc:h2:mem:testdb;DATABASE_TO_UPPER=false;DB_CLOSE_ON_EXIT=FALSE
     driver-class-name: org.h2.Driver
   jpa:
     hibernate:
