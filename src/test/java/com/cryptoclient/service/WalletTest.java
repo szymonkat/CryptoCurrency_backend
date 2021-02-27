@@ -1,8 +1,6 @@
 package com.cryptoclient.service;
 
-import com.cryptoclient.domain.Currency;
 import com.cryptoclient.domain.Wallet;
-import com.cryptoclient.domain.WalletItem;
 import com.cryptoclient.repository.WalletItemRepository;
 import com.cryptoclient.repository.WalletRepository;
 import com.cryptoclient.service.interfaces.WalletItemService;
@@ -11,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.LocalDateTime;
@@ -23,7 +22,8 @@ import static org.junit.Assert.assertTrue;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-public class WalletTestSuite {
+@ActiveProfiles("test")
+public class WalletTest {
 
     @Autowired
     private WalletService walletService;
@@ -151,25 +151,4 @@ public class WalletTestSuite {
         //Cleanup
         walletRepository.deleteById(wallet.getId());
     }
-
-
-    @Test
-    public void shouldCheckHowManyUsdWalletHas() {
-        //Given
-        Wallet wallet = new Wallet(various + "10");
-        walletService.createWallet(wallet);
-
-        WalletItem walletItem = new WalletItem(wallet,  Currency.USD,200.0);
-        walletItemService.save(walletItem);
-        wallet.addWalletItem(walletItem);
-
-        //When
-        Double usdQuantity = walletService.checkHowManyUsdWalletHas(wallet.getId());
-        //Then
-        assertEquals(usdQuantity, 200.0, 0.01);
-        //Cleanup
-//        walletItemRepository.deleteById(walletItem.getId());
-//        walletRepository.deleteById(wallet.getId());
-    }
-
 }
