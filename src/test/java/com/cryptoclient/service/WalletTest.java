@@ -23,7 +23,7 @@ import static org.junit.Assert.assertTrue;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @ActiveProfiles("test")
-public class WalletTestSuite {
+public class WalletTest {
 
     @Autowired
     private WalletService walletService;

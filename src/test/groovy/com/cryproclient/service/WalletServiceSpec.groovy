@@ -1,11 +1,9 @@
 package com.cryproclient.service
 
-import com.cryptoclient.domain.Wallet
-import com.cryptoclient.service.interfaces.WalletService
-import org.springframework.beans.factory.annotation.Autowired
+
 import spock.lang.Specification
 
-class WalletServiceSpockTestSuite extends Specification {
+class WalletServiceSpec extends Specification {
 
     def "two plus two should equal four"() {
         given:
