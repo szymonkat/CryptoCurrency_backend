@@ -19,7 +19,7 @@ import static org.junit.Assert.assertEquals;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @ActiveProfiles("test")
-public class AnalyzerTestSuite {
+public class AnalyzerTest {
 
     ExchangePortal exchangePortalNewest = ExchangePortal.builder()
             .provider("nomics")

@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @WebMvcTest(ItemToBuyController.class)
 @ActiveProfiles("test")
-public class ItemToBuyControllerTestSuite {
+public class ItemToBuyControllerTest {
 
     @Autowired
     private MockMvc mockMvc;

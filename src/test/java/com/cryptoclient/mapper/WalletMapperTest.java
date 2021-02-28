@@ -17,7 +17,7 @@ import java.util.List;
 @RunWith(MockitoJUnitRunner.class)
 @SpringBootTest
 @ActiveProfiles("test")
-public class WalletMapperTestSuite {
+public class WalletMapperTest {
 
     @InjectMocks
     private WalletMapper walletMapper;

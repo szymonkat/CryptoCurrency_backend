@@ -37,6 +37,3 @@ For a documentation You can visit "http://localhost:8083/swagger-ui.html" (proje
 ### 7. Troubleshooting
 If You encounter any problems regarding operation, please let me know. 
 <br>
-Currently I am aware of ongoing issues (I am working on them):
-1) Bidirectional oneToMany relation wallet - wallet item
-2) H2 tests database set up

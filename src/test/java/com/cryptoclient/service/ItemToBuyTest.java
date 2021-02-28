@@ -25,7 +25,7 @@ import static org.junit.Assert.*;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @ActiveProfiles("test")
-public class ItemToBuyTestSuite {
+public class ItemToBuyTest {
 
     ExchangePortal exchangePortal = ExchangePortal.builder()
             .provider("nomics")

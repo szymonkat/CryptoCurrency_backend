@@ -18,7 +18,7 @@ import java.util.List;
 @RunWith(MockitoJUnitRunner.class)
 @SpringBootTest
 @ActiveProfiles("test")
-public class ExchangePortalMapperTestSuite {
+public class ExchangePortalMapperTest {
 
     @InjectMocks
     private ExchangePortalMapper exchangePortalMapper;

@@ -12,7 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,13 +36,10 @@ public class WalletTest {
     @Autowired
     private WalletItemRepository walletItemRepository;
 
-    LocalDateTime now = LocalDateTime.now();
-    String various = now.toString();
-
     @Test
     public void shouldFindWalletById() {
         //Given
-        Wallet wallet = new Wallet(various);
+        Wallet wallet = new Wallet("test_wallet_1");
         //When
         Wallet createdWallet = walletService.createWallet(wallet);
         Long createdWalletId = createdWallet.getId();
@@ -58,9 +54,9 @@ public class WalletTest {
     @Test
     public void shouldGetWallets() {
         //Given
-        Wallet wallet1 = new Wallet(various + "1");
-        Wallet wallet2 = new Wallet(various + "2");
-        Wallet wallet3 = new Wallet(various + "3");
+        Wallet wallet1 = new Wallet("test_wallet_2");
+        Wallet wallet2 = new Wallet("test_wallet_3");
+        Wallet wallet3 = new Wallet("test_wallet_4");
         List<Wallet> walletList = new ArrayList<>();
         //When
         walletService.createWallet(wallet1);
@@ -82,11 +78,11 @@ public class WalletTest {
     @Test
     public void shouldCreateWallet() {
         //Given
-        Wallet wallet = new Wallet(various + "4");
+        Wallet wallet = new Wallet("test_wallet_5");
         //When
         Wallet newWallet = walletService.createWallet(wallet);
         //Then
-        assertEquals(various + "4", newWallet.getName());
+        assertEquals("test_wallet_5", newWallet.getName());
         //Cleanup
         walletRepository.deleteById(wallet.getId());
     }
@@ -94,16 +90,16 @@ public class WalletTest {
     @Test
     public void shouldUpdateWalletsName() {
         //Given
-        Wallet wallet = new Wallet(various + "5");
+        Wallet wallet = new Wallet("test_wallet_6");
         walletService.createWallet(wallet);
         Long walletId = wallet.getId();
-        Wallet updatedWallet = new Wallet(various + "6");
+        Wallet updatedWallet = new Wallet("test_wallet_7");
         updatedWallet.setId(walletId);
         //When
         Wallet newWallet = walletService.updateWalletName(updatedWallet);
         //Then
         assertEquals(newWallet.getId(), updatedWallet.getId());
-        assertEquals(newWallet.getName(), updatedWallet.getName());
+        assertEquals(newWallet.getName(), "test_wallet_7");
         //Cleanup
         walletRepository.deleteById(newWallet.getId());
     }
@@ -111,7 +107,7 @@ public class WalletTest {
     @Test
     public void shouldDeleteWallet() {
         //Given
-        Wallet wallet = new Wallet(various + "7");
+        Wallet wallet = new Wallet("test_wallet_8");
         walletService.createWallet(wallet);
         Long walletId = wallet.getId();
         List<Wallet> walletList = new ArrayList<>();
@@ -129,12 +125,12 @@ public class WalletTest {
     @Test
     public void shouldSaveWallet() {
         //Given
-        Wallet wallet = new Wallet(various + "8");
+        Wallet wallet = new Wallet("test_wallet_9");
         //When
         walletService.save(wallet);
         Long walletId = wallet.getId();
         //Then
-        assertEquals(walletService.findWalletById(walletId).getName(), various + "8");
+        assertEquals(walletService.findWalletById(walletId).getName(),"test_wallet_9");
         //Cleanup
         walletRepository.deleteById(wallet.getId());
     }
@@ -142,7 +138,7 @@ public class WalletTest {
     @Test
     public void shouldCheckIfWalletExistsById() {
         //Given
-        Wallet wallet = new Wallet(various + "9");
+        Wallet wallet = new Wallet("test_wallet_10");
         walletService.save(wallet);
         //When
         boolean walletExists = walletService.checkIfExistsById(wallet.getId());

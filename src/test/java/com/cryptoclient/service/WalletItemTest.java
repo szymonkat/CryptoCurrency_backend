@@ -24,7 +24,7 @@ import static org.junit.Assert.assertFalse;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @ActiveProfiles("test")
-public class WalletItemTestSuite {
+public class WalletItemTest {
 
     LocalDateTime now = LocalDateTime.now();
     String various = now.toString();

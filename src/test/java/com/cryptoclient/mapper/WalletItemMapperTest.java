@@ -22,7 +22,7 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 @SpringBootTest
 @ActiveProfiles("test")
-public class WalletItemMapperTestSuite {
+public class WalletItemMapperTest {
 
     @InjectMocks
     private WalletItemMapper walletItemMapper;

@@ -29,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @WebMvcTest(WalletController.class)
 @ActiveProfiles("test")
-public class WalletControllerTestSuite {
+public class WalletControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
