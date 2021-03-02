@@ -33,6 +33,8 @@ For a documentation You can visit "http://localhost:8083/swagger-ui.html" (proje
 2) Transactional features
 3) Automatic mailing features
 4) Selling cryptocurrencies feature and trading within wallets
+5) Microservises makeover
+6) AWS upload
 
 ### 7. Troubleshooting
 If You encounter any problems regarding operation, please let me know. 
